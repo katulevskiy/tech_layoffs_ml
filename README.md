@@ -26,7 +26,7 @@ __General Analysis__
 - We also printed a lot of general statistics about our dataset, like the number of observations, deviation, etc.
 - Lastly, we also dropped columns we believed would be unnecessary, priming our dataset for the coming machine learning tasks.
 
-__In-depth, Comprehensive Analysis of Releavant Variables__
+__In-depth, Comprehensive Analysis of Relevant Variables__
 - Besides all of the tasks listed above, we also performed in depth exploration and analsis on some data variables that we deem as important to our machine learning project's goal.
 - The variables we took into consideration were: money raised, size of company before and after layoff, stage of the company, and industry of the company.
 - By performing correlation analysis on layoff percentage, and money raised + size of company before and after layoff, we helped answer the following questions: Would a company have more layoffs if its company size was relatively big before the layoff? Does the size of the company after a layoff be indicative of how big the layoff was? If a company has more money raised, then would the size of their layoff be smaller?
