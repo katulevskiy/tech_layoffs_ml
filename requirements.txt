@@ -3,3 +3,5 @@ numpy
 matplotlib
 seaborn
 yfinance
+scikit-learn
+sklearn.preprocessing
