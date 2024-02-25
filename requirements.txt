@@ -4,4 +4,6 @@ matplotlib
 seaborn
 yfinance
 scikit-learn
-sklearn.preprocessing
+tensorflow
+keras
+scikeras
