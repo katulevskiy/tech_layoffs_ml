@@ -1401,19 +1401,19 @@
 3265,HopSkipDrive,Los Angeles,USA,North America,8,2020-03-13 00:00:00 UTC,10,80,72,Transportation,Unknown,$45,2020,34.05223,-118.24368
 3266,Panda Squad,San Francisco Bay Area,USA,North America,6,2020-03-13 00:00:00 UTC,75,8,2,Consumer,Seed,$1,2020,37.77493,-122.41942
 3267,Tamara Mellon,Los Angeles,USA,North America,20,2020-03-12 00:00:00 UTC,40,50,30,Retail,Series C,$90,2020,34.05223,-118.24368
-3272,Discord,San Francisco Bay Area,USA,North America,170,2024-11-01 00:00:00 UTC,17,1000,830,Consumer,Series H,$995,2024,37.77493,-122.41942
-3273,Inmobi,Bengaluru,India,Asia,125,2024-11-01 00:00:00 UTC,5,2500,2375,Marketing,Unknown,$320,2024,12.97194,77.59369
-3274,Audible,New York City,USA,North America,100,2024-11-01 00:00:00 UTC,5,2000,1900,Media,Acquired,$14,2024,40.71427,-74.00597
-3275,Sisense,New York City,USA,North America,60,2024-11-01 00:00:00 UTC,13,462,402,Data,Series F,$274,2024,40.71427,-74.00597
-3277,Google,San Francisco Bay Area,USA,North America,1000,2024-10-01 00:00:00 UTC,0.531914893617021,188000,187000,Consumer,Post-IPO,$26,2024,37.38605,-122.08385
-3279,Instagram,San Francisco Bay Area,USA,North America,60,2024-10-01 00:00:00 UTC,13.3333333333333,450,390,Consumer,Acquired,$57,2024,37.45383,-122.18219
-3281,Twitch,San Francisco Bay Area,USA,North America,500,2024-09-01 00:00:00 UTC,35,1429,929,Consumer,Acquired,$35,2024,37.77493,-122.41942
-3282,Nevro,San Francisco Bay Area,USA,North America,63,2024-09-01 00:00:00 UTC,5,1260,1197,Healthcare,Post-IPO,$556,2024,37.48522,-122.23635
-3283,Rent the Runway,New York City,USA,North America,37,2024-09-01 00:00:00 UTC,10,370,333,Retail,Post-IPO,$526,2024,40.71427,-74.00597
-3284,Humane,San Francisco Bay Area,USA,North America,10,2024-09-01 00:00:00 UTC,4,250,240,Hardware,Series C,$230,2024,37.77493,-122.41942
-3285,Unity,San Francisco Bay Area,USA,North America,1800,2024-08-01 00:00:00 UTC,25,7200,5400,Other,Post-IPO,$1300,2024,37.77493,-122.41942
-3286,Pitch,Berlin,Germany,Europe,80,2024-08-01 00:00:00 UTC,67,119,39,Other,Series B,$138,2024,52.52437,13.41053
-3287,BenchSci,Toronto,Canada,North America,70,2024-08-01 00:00:00 UTC,17,412,342,Healthcare,Series D,$164,2024,43.70643,-79.39864
-3288,NanoString Technology,Seattle,USA,North America,50,2024-08-01 00:00:00 UTC,9,556,506,Healthcare,Post-IPO,$826,2024,47.60621,-122.33207
-3289,Trigo,Tel Aviv,Israel,Asia,30,2024-04-01 00:00:00 UTC,15,200,170,Retail,Series C,$199,2024,32.08088,34.78057
-3290,Frontdesk,Milwaukee,USA,North America,200,2024-02-01 00:00:00 UTC,100,200,0,Travel,Unknown,$26,2024,43.0389,-87.90647
+3272,Discord,San Francisco Bay Area,USA,North America,170,2024-01-11 00:00:00 UTC,17,1000,830,Consumer,Series H,$995,2024,37.77493,-122.41942
+3273,Inmobi,Bengaluru,India,Asia,125,2024-01-11 00:00:00 UTC,5,2500,2375,Marketing,Unknown,$320,2024,12.97194,77.59369
+3274,Audible,New York City,USA,North America,100,2024-01-11 00:00:00 UTC,5,2000,1900,Media,Acquired,$14,2024,40.71427,-74.00597
+3275,Sisense,New York City,USA,North America,60,2024-01-11 00:00:00 UTC,13,462,402,Data,Series F,$274,2024,40.71427,-74.00597
+3277,Google,San Francisco Bay Area,USA,North America,1000,2024-01-10 00:00:00 UTC,0.531914893617021,188000,187000,Consumer,Post-IPO,$26,2024,37.38605,-122.08385
+3279,Instagram,San Francisco Bay Area,USA,North America,60,2024-01-10 00:00:00 UTC,13.3333333333333,450,390,Consumer,Acquired,$57,2024,37.45383,-122.18219
+3281,Twitch,San Francisco Bay Area,USA,North America,500,2024-01-09 00:00:00 UTC,35,1429,929,Consumer,Acquired,$35,2024,37.77493,-122.41942
+3282,Nevro,San Francisco Bay Area,USA,North America,63,2024-01-09 00:00:00 UTC,5,1260,1197,Healthcare,Post-IPO,$556,2024,37.48522,-122.23635
+3283,Rent the Runway,New York City,USA,North America,37,2024-01-09 00:00:00 UTC,10,370,333,Retail,Post-IPO,$526,2024,40.71427,-74.00597
+3284,Humane,San Francisco Bay Area,USA,North America,10,2024-01-09 00:00:00 UTC,4,250,240,Hardware,Series C,$230,2024,37.77493,-122.41942
+3285,Unity,San Francisco Bay Area,USA,North America,1800,2024-01-08 00:00:00 UTC,25,7200,5400,Other,Post-IPO,$1300,2024,37.77493,-122.41942
+3286,Pitch,Berlin,Germany,Europe,80,2024-01-08 00:00:00 UTC,67,119,39,Other,Series B,$138,2024,52.52437,13.41053
+3287,BenchSci,Toronto,Canada,North America,70,2024-01-08 00:00:00 UTC,17,412,342,Healthcare,Series D,$164,2024,43.70643,-79.39864
+3288,NanoString Technology,Seattle,USA,North America,50,2024-01-08 00:00:00 UTC,9,556,506,Healthcare,Post-IPO,$826,2024,47.60621,-122.33207
+3289,Trigo,Tel Aviv,Israel,Asia,30,2024-01-04 00:00:00 UTC,15,200,170,Retail,Series C,$199,2024,32.08088,34.78057
+3290,Frontdesk,Milwaukee,USA,North America,200,2024-01-02 00:00:00 UTC,100,200,0,Travel,Unknown,$26,2024,43.0389,-87.90647
