@@ -5,3 +5,4 @@ seaborn
 yfinance
 scikit-learn
 sklearn.preprocessing
+scikeras
