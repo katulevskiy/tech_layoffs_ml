@@ -6,3 +6,4 @@ yfinance
 scikit-learn
 sklearn.preprocessing
 scikeras
+tensorflow
