@@ -2,13 +2,18 @@
 
 Based on https://www.kaggle.com/datasets/ulrikeherold/tech-layoffs-2020-2024/data
 
-## Data pre-processing
+##  Data pre-processing
 
 - Min-max scaling: Since we are using data across various domains (stock, GDP, etc.), different parts of the data vary greatly in scale. To ensure that we can understand the weightage of features in whatever models we want to run, we choose to use min-max scaling and put all features on the same scale. This prevents a high-magnitude feature from dominiating the algorithm's learning process.
-- Add external data to the dataset: The original dataset does not cover GDP, foreign aid, and stock values. However, these macroeconomic trends reflect in company behavior, and therefore can be useful to understand layoffs in tech companies. We incorporate these values to improve our model's knowledge base.
 - Drop null values: Null values can distort every step of the machine learning pipeline, from EDA to results. We drop null values to ensure a complete dataset with high quality and reliability.
 - Drop non-US companies: Since our project's goal is to predict tech layoffs within the United States, we choose to drop non-US companies. To the same end, we will only be working with the US's GDP and foreign aid statistics, and our stock data is from the NASDAQ technological sector.
 - Drop irrelevant columns: Dropping unnecessary columns reduces the dimensionality of our dataset (this also helps to make output more readable) and ensures that our model is not affected by noisy data that does not relate to the prediction. By streamlining the dataset, we can efficiently train our model and increase performance.
+  
+## FINALIZED Data pre-processing
+- Location_HQ: Changed into region by timezone based on the city, numerically encoded
+- Stage, Industry, Location_HQ: one-hot encoded
+- Stock Delta: calculated delta based on the past 90 days (to signify last quarter)
+- Dates: converted to UNIX to be able to categorize it
 
 ## Data Exploration & EDA
 
