@@ -14,6 +14,7 @@ Based on https://www.kaggle.com/datasets/ulrikeherold/tech-layoffs-2020-2024/dat
 - Stage, Industry, Location_HQ: one-hot encoded
 - Stock Delta: calculated delta based on the past 90 days (to signify last quarter)
 - Dates: converted to UNIX to be able to categorize it
+- Removing Outliers: removed companies with an intial employee size of <10 to prevent outliers. 
 
 ## Data Exploration & EDA
 
