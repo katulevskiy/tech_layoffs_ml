@@ -38,6 +38,21 @@ __In-depth, Comprehensive Analysis of Relevant Variables__
 - By performing correlation analysis on layoff percentage, and money raised + size of company before and after layoff, we helped answer the following questions: Would a company have more layoffs if its company size was relatively big before the layoff? Does the size of the company after a layoff be indicative of how big the layoff was? If a company has more money raised, then would the size of their layoff be smaller?
 - Additionally, by exploring industry and stages of the companies that had layoffsm we also answered the following questions: Are certain industries more prone to experiencing layoffs compared to others? Does the current stage of a company serve as a significant indicator of the likelihood of layoffs?
 
+## Model 1 - Polynomial Regression
+
+[Finalized Data Preprocessing + Model 1 Analysis Notebook](./FinalizedDataPreprocessingCharisseKevinKenneth.ipynb)
+
+- We decided to use polynomial regression to predict the percentage of a company layed off based on our input features.
+- Polynomials degrees 1 through 4 were used to predict the percentage layed off and MSE was used to determine the performance of the model.
+
+  ![Polynomial Regression MSE](images/polyreg-mse.png)
+
+- Since our MSE is high, we conclude that our model is underfitting.
+- For our next two models, we are considering using the following models:
+  - Automatic Relevance Determination regression to see if a different regularization technique will better assign weights depending on the feature relevance.
+  - Neural Networks to better find patterns within our data.
+- In conclusion, polynomial regression is not the best way for us to model our data. While it can be improved by using higher degrees or limiting our features, the time required to compute a polynomial regression makes us less likely to use this model.
+
 __Models__
 - Linear Regression: Training and Testing MSE are roughly equal (484.89271442931323 and 409.1260231141291 respectively) meaning there is likely no overfitting. Additionally, since linear regression is not a complex model, there is unlikely to be any overfitting. 
 - Deep Neural Network: Training and Testing MSE are roughly equal with our Testing MSE lower than Training (training: 786.0688607895703 and testing: 584.9785179527101) so there is likely to underfitting since our model doesn't perform better on the data it trains on. The structure of the neural net is 4 hidden layers of 10 nodes with a sigmoid activation function.
