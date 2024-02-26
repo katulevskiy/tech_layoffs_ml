@@ -39,9 +39,9 @@ __In-depth, Comprehensive Analysis of Relevant Variables__
 - Additionally, by exploring industry and stages of the companies that had layoffsm we also answered the following questions: Are certain industries more prone to experiencing layoffs compared to others? Does the current stage of a company serve as a significant indicator of the likelihood of layoffs?
 
 __Models__
--Linear Regression: Training and Testing MSE are roughly equal (484.89271442931323 and 409.1260231141291 respectively) meaning there is likely no overfitting. Additionally, since linear regression is not a complex model, there is unlikely to be any overfitting. 
--Deep Neural Network: Training and Testing MSE are roughly equal with our Testing MSE lower than Training (training: 786.0688607895703 and testing: 584.9785179527101) so there is likely to underfitting since our model doesn't perform better on the data it trains on. The structure of the neural net is 4 hidden layers of 10 nodes with a sigmoid activation function.
+- Linear Regression: Training and Testing MSE are roughly equal (484.89271442931323 and 409.1260231141291 respectively) meaning there is likely no overfitting. Additionally, since linear regression is not a complex model, there is unlikely to be any overfitting. 
+- Deep Neural Network: Training and Testing MSE are roughly equal with our Testing MSE lower than Training (training: 786.0688607895703 and testing: 584.9785179527101) so there is likely to underfitting since our model doesn't perform better on the data it trains on. The structure of the neural net is 4 hidden layers of 10 nodes with a sigmoid activation function.
 
 __Next Two Models__
--One model we could find would be from using Grid Search to find a better tuned Deep Neural Network.
--Another model we could try is Automatic Relevance Determination (ARD) since we aren't sure if all of our features are relevant in predicting the layoff percentage.
+- One model we could find would be from using Grid Search to find a better tuned Deep Neural Network.
+- Another model we could try is Automatic Relevance Determination (ARD) since we aren't sure if all of our features are relevant in predicting the layoff percentage.
