@@ -14,7 +14,7 @@ Based on https://www.kaggle.com/datasets/ulrikeherold/tech-layoffs-2020-2024/dat
 - Stage, Industry, Location_HQ: one-hot encoded
 - Stock Delta: calculated delta based on the past 90 days (to signify last quarter)
 - Dates: converted to UNIX to be able to categorize it
-- Removing Outliers: removed companies with an intial employee size of <10 to prevent outliers. 
+- Removing Outliers: removed companies with an intial employee size of <10 to prevent outliers such as small startups going bankrupt. Functionally, users of our tool are unlikely to predict whether or not they will be laid off since they likely know the CEO and how well their company is doing. Additionally, a small startup is more likely to go bankrupt then lay anyone off leading to a "100%" layoff rate.
 
 ## Data Exploration & EDA
 
@@ -26,7 +26,7 @@ __Tools/Plots__
 - Correlation analysis: Similar to a pairplot, a correlation analysis can help us find relationships between a feature and the target (tech layoff). Specificially, we can find the strength of a linear relationship, with the added benefit of getting a quantitative value instead of just a plot.
 
 __General Analysis__
-- We also did some general preprocessing. Our tech layoff dataset luckily had little to no nulls, but some names and column values were off, so we fixed it (for example, Salesforce was incorrectly named). We also began bringing in some financial data and global GDP data so that we could correlate external factors to our prediction as well.
+- We also did some general preprocessing. Our tech layoff dataset luckily had little to no nulls, but some names and column values were off, so we fixed it (for example, Salesforce was incorrectly named). We also began bringing in financial data and global GDP data so that we could correlate external factors to our prediction as well.
 - Number of Layoffs per Year in the USA and Top Industries Affected: While these are tech companies, we wanted the insights as to which industry the tech companies catered to were most affected. It seemed that Consumer, Transportation, Financial companies were the most affected.
 - Because we want to identify the attributes that will affect our prediction the most, we also looked at which geographical areas were affected the most (San Fran Bay Area, Seattle, etc.), the companies with most layoffs (Google, Meta, etc.)
 - We also printed a lot of general statistics about our dataset, like the number of observations, deviation, etc.
@@ -53,3 +53,10 @@ __In-depth, Comprehensive Analysis of Relevant Variables__
   - Neural Networks to better find patterns within our data.
 - In conclusion, polynomial regression is not the best way for us to model our data. While it can be improved by using higher degrees or limiting our features, the time required to compute a polynomial regression makes us less likely to use this model.
 
+__Models__
+- Linear Regression: Training and Testing MSE are roughly equal (484.89271442931323 and 409.1260231141291 respectively) meaning there is likely no overfitting. Additionally, since linear regression is not a complex model, there is unlikely to be any overfitting. 
+- Deep Neural Network: Training and Testing MSE are roughly equal with our Testing MSE lower than Training (training: 786.0688607895703 and testing: 584.9785179527101) so there is likely to underfitting since our model doesn't perform better on the data it trains on. The structure of the neural net is 4 hidden layers of 10 nodes with a sigmoid activation function.
+
+__Next Two Models__
+- One model we could find would be from using Grid Search to find a better tuned Deep Neural Network.
+- Another model we could try is Automatic Relevance Determination (ARD) since we aren't sure if all of our features are relevant in predicting the layoff percentage.
