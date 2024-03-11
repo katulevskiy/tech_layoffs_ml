@@ -58,3 +58,7 @@ __Next Two Models__
 - Another model we could try is Automatic Relevance Determination (ARD) since we aren't sure if all of our features are relevant in predicting the layoff percentage.
 
 ## Model 2 - Neural Network
+Model 2 – Neural Net
+!(insert link: https://github.com/katulevskiy/tech_layoffs_ml/blob/main/FinalizedDataPreprocessingCharisseKevinKenneth.ipynb)
+
+For model 2 we decide to train a Neural Net to predict the probability of tech layoffs given a company. We use the same features as Model 1 (Date_layoffs, stock_delta, Company_Size_before_Layoffs, Money_Raised_in_$_mil, Industry, Stage, and Region), and decide to use MSE to evaluate our model. We decided to use MSE as we work with continuous data for our target (percentage likely to be laid off), which MSE reflects well. Our features and loss functions were therefore sufficient, and we did not have to change them from Model 1.
