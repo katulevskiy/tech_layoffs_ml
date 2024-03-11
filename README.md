@@ -80,3 +80,11 @@ To improve our model, we ran Grid Search, during which we modified the number of
 - Train MSE - 407.6795840293022
 - Test MSE - 344.07788384916205
 - Validation MSE - 222.8351758414751
+
+After optimizing the model with Grid Search, Model 2 performs a lot better and seems to not be overfitting on training data, but seems to pick the model that does the best on validation data (it is better on validation compared to training). This occurs because during Grid Search, we choose the set of hyperparameters that result in the best validation MSE. The result of this could potentially be from random choice, where it may have randomly done the best on that validation dataset.
+
+Given the MSE's above, we infer that the neural network model did not overfit on the training data. Therefore, we claim that our model falls on the lower end of the fitting graph, corresponding to low model complexity. Compared to our first model (polynomial regression), we fit a lot less to the training data; we had a 17% higher MSE on the test data than the training data on the first model, whereas this model had a lower testing MSE than on train.
+
+## Next model: Random Forest Regressor
+
+The next model we are thinking of implementing is a Random Forest Regressor. A Random Forest is an ensemble method that combines the results of various decision trees to make its prediction. When it comes to regression, it specifically takes the mean output from each tree. Random Forest Regression works well for a variety of reasons. Firstly, because it is an ensemble method, it can help reduce variance and bias in predictions, since one specific tree (each tree is its own ‘model’) will not skew predictions. For the same reason, it tends to not overfit on data. When it comes to financial data, a Random Forest may perform well because it is good at capturing complex nonlinear relationships. Our data consists of a lot of features that interact in ways we cannot understand due to complicated market dynamics. A Random Forest model can capture such relationships while also outputting feature importance, which can be useful for analysis.
