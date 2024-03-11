@@ -8,3 +8,4 @@ sklearn.preprocessing
 scikeras
 keras
 tensorflow
+keras_tuner
