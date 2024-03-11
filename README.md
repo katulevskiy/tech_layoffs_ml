@@ -47,7 +47,7 @@ __In-depth, Comprehensive Analysis of Relevant Variables__
 
   ![Polynomial Regression MSE](images/polyreg-mse.png)
 
-- Since our MSE is high, we conclude that our model is underfitting.
+- As we increased the polynomial degree, our model's MSE on the training data set shrunk, but on the testing data it grew, so we conclude that our model is overfitting. Based on the graph, we can say that at about the third degree, the model begins to overfit.
 - For our next two models, we are considering using the following models:
   - Automatic Relevance Determination regression to see if a different regularization technique will better assign weights depending on the feature relevance.
   - Neural Networks to better find patterns within our data.
