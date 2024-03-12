@@ -109,6 +109,16 @@ Additionally, it can also be helpful for companies who know that they should lay
 
 ### Methods 
 
+#### Data Exploration
+
+#### Preprocessing
+
+#### KFoldCrossVal
+
+#### GridSearch Optimized Neural Network
+The next model ran was a Grid Search-optimized neural network, during which the hyperparameter was to modify the number of units in each hidden layer of the network and the activation function in the hidden and output layers.
+
+
 ### Results
 
 #### Polynomial Regression
@@ -124,7 +134,21 @@ Plotted on a graph, the training and testing MSEs look as follows:
 
 ![Training and Testing MSE vs Degree](images/polyreg-mse.png)
 
+#### GridSearch Optimized Neural Network
+
+The best model was chosen based on the set of hyperparameters that performed best on the validation set. The following results were obtained:
+| Hyperparameter Trial: |     18     |    47     |   46   |
+|----------------------:|:---------:|:-------:|:----------:|
+| Validation MSE          | 222.83517 | 232.19811 | 400.67580 |
+|  Testing MSE          | 344.07788 |         |        |
+|  Training MSE          | 407.67958 |         |      |
+
+After optimizing the model with Grid Search, Model 2 performs a lot better and seems to not be overfitting on training data, but seems to pick the model that does the best on validation data (it is better on validation compared to training). This occurs because during Grid Search, we choose the set of hyperparameters that result in the best validation MSE. The result of this could potentially be from random choice, where it may have randomly done the best on that validation dataset.
+
+
 ### Discussion 
+
+
 
 ### Conclusion 
 
