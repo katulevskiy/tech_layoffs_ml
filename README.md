@@ -157,29 +157,25 @@ Plotted on a graph, the training and testing MSEs look as follows:
 3. GridSearch Optimized Neural Network
 
 The best model was chosen based on the set of hyperparameters that performed best on the validation set. The following results were obtained:
+
+```
+Model: "sequential"
+_________________________________________________________________| ________________________ |
+ Layer (type)                Output Shape              Param #   | Trial 18 summary         |
+=================================================================| ======================== |
+ dense (Dense)               (None, 12)                624       | Hyperparameters:         |
+ dense_1 (Dense)             (None, 3)                 39        | units1: 3                |
+ dense_2 (Dense)             (None, 3)                 12        | acttype: relu            |
+ dense_3 (Dense)             (None, 3)                 12        | lr: 0.19168293127388178  |
+ dense_4 (Dense)             (None, 1)                 4         | Score: 229.6578369140625 |
+```
 | Hyperparameter Trial: |     18     |    47     |   46   |
 |----------------------:|:---------:|:-------:|:----------:|
 | Validation MSE          | 222.83517 | 232.19811 | 400.67580 |
 |  Testing MSE          | 344.07788 |         |        |
 |  Training MSE          | 407.67958 |         |      |
 
-After optimizing the model with Grid Search, Model 2 performs a lot better and seems to not be overfitting on training data, but seems to pick the model that does the best on validation data (it is better on validation compared to training). This occurs because during Grid Search, we choose the set of hyperparameters that result in the best validation MSE. The result of this could potentially be from random choice, where it may have randomly done the best on that validation dataset.
-
-```
-Model: "sequential"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
- dense (Dense)               (None, 12)                624       
-                                                                 
- dense_1 (Dense)             (None, 3)                 39        
-                                                                 
- dense_2 (Dense)             (None, 3)                 12        
-                                                                 
- dense_3 (Dense)             (None, 3)                 12        
-                                                                 
- dense_4 (Dense)             (None, 1)                 4
-```
+After optimizing the model with Grid Search, Model 2 performs a lot better, with the best trial activation type = 'relu', the number of nodes in each middle layer = 3, and the lr = 0.192. While it performs worse on the training data set than validation, this phenomenon occurs because during Grid Search, the set of 'best' hyperparameters is decided based on its best performance with regards to the validation MSE. The result of this could potentially be from random choice, where by chance it may have performed the best on that specific validation dataset.
 
 
 ### Discussion 
