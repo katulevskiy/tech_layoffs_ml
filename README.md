@@ -115,6 +115,35 @@ Additionally, it can also be helpful for companies who know that they should lay
 
 #### Models
 1. Polynomial Regression
+
+The first model we tried was polynomial regression, during which we tried
+modifying the degree of our polynomial.
+
+```py
+logreg = LinearRegression()
+
+X_train_np = np.array(X_train)
+y_train_np = np.array(y_train)
+X_train_df = pd.DataFrame(X_train_np)
+y_train_df = pd.DataFrame(y_train_np)
+
+logreg.fit(X_train_df, y_train_df)
+```
+
+```py
+for k in range(2,5):
+    # Create kth degree polynomial
+    poly = PolynomialFeatures(k)
+
+    # Convert features to fit polynomial model
+    train_features = poly.fit_transform(X_train_df)
+    test_features = poly.fit_transform(X_test)
+
+    # Create polynomial regression
+    polyreg = LinearRegression()
+    polyreg.fit(train_features, y_train_df)
+```
+
 2. Neural Network
 3. Grid-Search Optimized Neural Network
 
@@ -141,7 +170,7 @@ def buildHPmodel(hp):
 
 ### Results
 
-1. #### Polynomial Regression
+1. Polynomial Regression
 
 From our first model, we found the following MSEs for polynomials of degrees 1 to 4:
 
