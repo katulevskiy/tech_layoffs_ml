@@ -111,6 +111,19 @@ Additionally, it can also be helpful for companies who know that they should lay
 
 ### Results
 
+#### Polynomial Regression
+
+From our first model, we found the following MSEs for polynomials of degrees 1 to 4:
+
+|      Degree: |    1   |    2   |    3   |    4   |
+|-------------:|:------:|:------:|:------:|:------:|
+| Training MSE | 484.89 | 518.52 | 531.32 | 455.39 |
+|  Testing MSE | 409.13 | 667.18 | 624.80 | 880.05 |
+
+Plotted on a graph, the training and testing MSEs look as follows:
+
+![Training and Testing MSE vs Degree](images/polyreg-mse.png)
+
 ### Discussion 
 
 ### Conclusion 
