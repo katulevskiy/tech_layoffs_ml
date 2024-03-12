@@ -107,4 +107,12 @@ We wanted to create a layoff predictor to help employees know what to expect whe
 
 Additionally, it can also be helpful for companies who know that they should lay off employees, but don’t know what percentage of their staff that they should actually lay off. Our predictor can be used as a guiding indicator of what is recommended based on other companies in that situation and the status of the economy at the time. It can help prevent companies from accidentally laying off too many people, or not laying off enough people and needing to do a second round of layoffs. 
 
+### Methods 
 
+### Results
+
+### Discussion 
+
+### Conclusion 
+
+### Collaboration 
