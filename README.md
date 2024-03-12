@@ -243,4 +243,4 @@ After optimizing the model with Grid Search, Model 2 performs a lot better, with
    <p> Contribution:
 10. Name: Cedric-James David
     <p> Title:
-   <p> Contribution:
+    <p> Contribution:
