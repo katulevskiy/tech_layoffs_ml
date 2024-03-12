@@ -215,7 +215,7 @@ After optimizing the model with Grid Search, Model 2 performs a lot better, with
 
 ### Collaboration 
 1. Name: Ryan Ding
-   Title:
+   <p> Title:
    Contribution:
 2. Name: Harsh Gurnani
    Title:
