@@ -120,6 +120,21 @@ Additionally, it can also be helpful for companies who know that they should lay
 
 The next model ran was a Grid Search-optimized neural network, during which the hyperparameter was to modify the number of units in each hidden layer of the network and the activation function in the hidden and output layers.
 
+```
+def buildHPmodel(hp):
+  model= Sequential([
+      Dense(12, activation = 'sigmoid', input_dim = 51),
+      Dense(units=hp.Int("units1", min_value=3, max_value=24, step=5),activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
+      Dense(units=hp.Int("units1", min_value=3, max_value=24, step=5),activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
+      Dense(units=hp.Int("units1", min_value=3, max_value=24, step=5),activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
+      Dense(units=1,activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
+])
+  learning_rate = hp.Float("lr", min_value=0.05, max_value=0.3, sampling="log")
+  model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mse'])
+  return model
+
+```
+
 4. K-Fold Cross Validation
 5. Random Forest
 
@@ -139,7 +154,7 @@ Plotted on a graph, the training and testing MSEs look as follows:
 
 ![Training and Testing MSE vs Degree](images/polyreg-mse.png)
 
-#### 3. GridSearch Optimized Neural Network
+3. GridSearch Optimized Neural Network
 
 The best model was chosen based on the set of hyperparameters that performed best on the validation set. The following results were obtained:
 | Hyperparameter Trial: |     18     |    47     |   46   |
@@ -149,6 +164,22 @@ The best model was chosen based on the set of hyperparameters that performed bes
 |  Training MSE          | 407.67958 |         |      |
 
 After optimizing the model with Grid Search, Model 2 performs a lot better and seems to not be overfitting on training data, but seems to pick the model that does the best on validation data (it is better on validation compared to training). This occurs because during Grid Search, we choose the set of hyperparameters that result in the best validation MSE. The result of this could potentially be from random choice, where it may have randomly done the best on that validation dataset.
+
+```
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ dense (Dense)               (None, 12)                624       
+                                                                 
+ dense_1 (Dense)             (None, 3)                 39        
+                                                                 
+ dense_2 (Dense)             (None, 3)                 12        
+                                                                 
+ dense_3 (Dense)             (None, 3)                 12        
+                                                                 
+ dense_4 (Dense)             (None, 1)                 4
+```
 
 
 ### Discussion 
