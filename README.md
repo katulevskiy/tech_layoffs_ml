@@ -227,32 +227,22 @@ After optimizing the model with Grid Search, Model 2 performs a lot better, with
 
 ### Collaboration 
 1. Name: Ryan Ding
-   <p> Title:
    <p> Contribution:
 2. Name: Harsh Gurnani
-   <p> Title:
    <p> Contribution:
 3. Name: Michael Boyko
-   <p> Title:
    <p> Contribution:
 4. Name: Kenneth Nguyen
-   <p> Title:
    <p> Contribution:
 5. Name: Charisse Chua
-   <p> Title:
    <p> Contribution: 
 6. Name: Kevin Do
-    <p> Title:
    <p> Contribution:
 7. Name: Peter Lee
-   <p> Title:
    <p> Contribution:
 8. Name: Bella Jeong
-    <p> Title:
    <p> Contribution:
 9. Name: Daniil Katulevskiy
-    <p> Title:
    <p> Contribution:
 10. Name: Cedric-James David
-    <p> Title:
     <p> Contribution:
