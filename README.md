@@ -108,7 +108,8 @@ We wanted to create a layoff predictor to help employees know what to expect whe
 Additionally, it can also be helpful for companies who know that they should lay off employees, but don’t know what percentage of their staff that they should actually lay off. Our predictor can be used as a guiding indicator of what is recommended based on other companies in that situation and the status of the economy at the time. It can help prevent companies from accidentally laying off too many people, or not laying off enough people and needing to do a second round of layoffs. 
 
 We used a kaggle dataset that had tech layoff data from 2020-2024. We isolated only the entries from the US. You can see the trends of layoffs below: 
-![image](https://github.com/katulevskiy/tech_layoffs_ml/assets/122564577/161d5cf8-70e8-4fdd-b4db-8dbe939b56b4)
+
+ ![image](https://github.com/katulevskiy/tech_layoffs_ml/assets/122564577/161d5cf8-70e8-4fdd-b4db-8dbe939b56b4)
 
 
 ### Methods 
@@ -232,7 +233,7 @@ After optimizing the model with Grid Search, Model 2 performs a lot better, with
    <p> Contribution:
 5. Name: Charisse Chua
    <p> Title:
-   <p> Contribution:
+   <p> Contribution: 
 6. Name: Kevin Do
     <p> Title:
    <p> Contribution:
