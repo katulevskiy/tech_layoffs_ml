@@ -161,7 +161,7 @@ for k in range(2,5):
 
 The next model ran was a Grid Search-optimized neural network, during which the hyperparameter was to modify the number of units in each hidden layer of the network and the activation function in the hidden and output layers.
 
-```
+```py
 def buildHPmodel(hp):
   model= Sequential([
       Dense(12, activation = 'sigmoid', input_dim = 51),
