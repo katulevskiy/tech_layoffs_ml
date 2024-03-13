@@ -111,6 +111,13 @@ We used a kaggle dataset that had tech layoff data from 2020-2024. We isolated o
 
  ![image](https://github.com/katulevskiy/tech_layoffs_ml/assets/122564577/161d5cf8-70e8-4fdd-b4db-8dbe939b56b4)
 
+ Additionally, we used stock data as another predictor so that we would be able to have a tangible measurement of the economic status: 
+ 
+ ![image](https://github.com/katulevskiy/tech_layoffs_ml/assets/122564577/af9fb623-4866-4d7c-858e-54fc3f3bcf75)
+
+While we recognize that there are many different factors that go into predicting company layoffs, we felt that for our model it would be best to start with stock data (change in price for the last 90 days), the stage of the company, industry, region of the United States, and date.
+
+
 
 ### Methods 
 
