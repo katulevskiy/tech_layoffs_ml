@@ -126,14 +126,14 @@ While we recognize that there are many different factors that go into predicting
 
 #### Preprocessing
 
-**Preliminary data procesing**
+1. Preliminary data proccesing
 
 - Min-max scaling: Since we are using data across various domains (stock, GDP, etc.), different parts of the data vary greatly in scale. To ensure that we can understand the weightage of features in whatever models we want to run, we choose to use min-max scaling and put all features on the same scale. This prevents a high-magnitude feature from dominiating the algorithm's learning process.
 - Drop null values: Null values can distort every step of the machine learning pipeline, from EDA to results. We drop null values to ensure a complete dataset with high quality and reliability.
 - Drop non-US companies: Since our project's goal is to predict tech layoffs within the United States, we choose to drop non-US companies. To the same end, we will only be working with the US's GDP and foreign aid statistics, and our stock data is from the NASDAQ technological sector.
 - Drop irrelevant columns: Dropping unnecessary columns reduces the dimensionality of our dataset (this also helps to make output more readable) and ensures that our model is not affected by noisy data that does not relate to the prediction. By streamlining the dataset, we can efficiently train our model and increase performance.
 
-**Additional data processing**
+2. Additional data processing
 
 - Location_HQ: Changed into region by timezone based on the city, numerically encoded
 - Stage, Industry, Location_HQ: one-hot encoded
