@@ -216,7 +216,7 @@ _________________________________________________________________| _____________
 |  Testing MSE          | 344.07788 |         |        |
 |  Training MSE          | 407.67958 |         |      |
 
-After optimizing the model with Grid Search, Model 2 performs a lot better, with the best trial activation type = 'relu', the number of nodes in each middle layer = 3, and the lr = 0.192. While it performs worse on the training data set than validation, this phenomenon occurs because during Grid Search, the set of 'best' hyperparameters is decided based on its best performance with regards to the validation MSE. The result of this could potentially be from random choice, where by chance it may have performed the best on that specific validation dataset.
+After optimizing the model with Grid Search, Model 2 performs a lot better, with the best trial activation type = 'relu', the number of nodes in each layer (aside from the first) = 3, and the lr = 0.192. While it performs worse on the training data set than validation, this phenomenon occurs because during Grid Search, the set of 'best' hyperparameters is decided based on its best performance with regards to the validation MSE. The result of this could potentially be from random choice, where by chance it may have performed the best on that specific validation dataset.
 
 
 ### Discussion 
