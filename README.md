@@ -65,7 +65,7 @@ Based on https://www.kaggle.com/datasets/ulrikeherold/tech-layoffs-2020-2024/dat
 ## Model 2 - Neural Network
 
 [Model 2 – Neural Net](https://github.com/katulevskiy/tech_layoffs_ml/blob/main/FinalizedDataPreprocessingCharisseKevinKenneth.ipynb)
-All of our data, labels, and loss function remained the same; however, because our original loss function did not perform well, we decided to add the below changes to better tune it and improve our model predictions. 
+All of our data, labels, and loss function remained the same; however, because our original loss function did not perform well, we decided to add the below changes to better tune it and improve our model predictions.
 
 For model 2 we decide to train a Neural Net to predict the probability of tech layoffs given a company. We use the same features as Model 1 (Date*layoffs, stock_delta, Company_Size_before_Layoffs, Money_Raised_in*$\_mil, Industry, Stage, and Region), and decide to use MSE to evaluate our model. We decided to use MSE as we work with continuous data for our target (percentage likely to be laid off), which MSE reflects well. Our features and loss functions were therefore sufficient, and we did not have to change them from Model 1.
 
@@ -98,134 +98,207 @@ The next model we are thinking of implementing is a Random Forest Regressor. A R
 
 Although our initial base model for our second model performed much worse than the first (786.068 training MSE compared to 455.386 training MSE in the first model), after performing hyperparameter tuning, our second model improved a lot more. Our final MSE for model 2 was 407.679 training and 344.077 testing. This performed a lot better because we did grid search which computes the optimum hyperparameters to use to predict our data. It performed a lot better than our first model because our first model was just polynomial regression, and neural networks can adapt much better to complex datasets. In order to improve it, we could have done k-fold cross validation instead of using the same validation set every time, because otherwise it gets too specific on one single validation set that doesn’t necessarily train it on all of the different sets it could be on. Also, because not every feature is really impactful for our predictions, we could have isolated only the more influential features and made our predictions from there. This is why we are thinking of doing a random forest model as our model 3 because it will allow us to be more focused in what we use to train.
 
-## Final Project Submission 
+## Final Project Submission
 
-### Introduction 
-In today’s ever changing economy, companies are constantly needing to make restructuring adjustments, including layoffs. Though this is often a necessary change, employees at companies planning to do layoffs might feel completely blindsided as they often don’t know how many people are actually being laid off. 
-We wanted to create a layoff predictor to help employees know what to expect when they find out that their company is already planning to lay off people. It helps employees think about what their position is at the company, and they can make preparations based on how likely they are to be laid off based on the percentage of people we predict to be laid off. They can start preparing and looking for jobs at other companies if necessary. 
+### Introduction
 
+In today’s ever changing economy, companies are constantly needing to make restructuring adjustments, including layoffs. Though this is often a necessary change, employees at companies planning to do layoffs might feel completely blindsided as they often don’t know how many people are actually being laid off.
+We wanted to create a layoff predictor to help employees know what to expect when they find out that their company is already planning to lay off people. It helps employees think about what their position is at the company, and they can make preparations based on how likely they are to be laid off based on the percentage of people we predict to be laid off. They can start preparing and looking for jobs at other companies if necessary.
 
-Additionally, it can also be helpful for companies who know that they should lay off employees, but don’t know what percentage of their staff that they should actually lay off. Our predictor can be used as a guiding indicator of what is recommended based on other companies in that situation and the status of the economy at the time. It can help prevent companies from accidentally laying off too many people, or not laying off enough people and needing to do a second round of layoffs. 
+Additionally, it can also be helpful for companies who know that they should lay off employees, but don’t know what percentage of their staff that they should actually lay off. Our predictor can be used as a guiding indicator of what is recommended based on other companies in that situation and the status of the economy at the time. It can help prevent companies from accidentally laying off too many people, or not laying off enough people and needing to do a second round of layoffs.
 
-We used a kaggle dataset that had tech layoff data from 2020-2024. We isolated only the entries from the US. You can see the trends of layoffs below: 
+We used a kaggle dataset that had tech layoff data from 2020-2024. We isolated only the entries from the US. You can see the trends of layoffs below:
 
- ![image](https://github.com/katulevskiy/tech_layoffs_ml/assets/122564577/161d5cf8-70e8-4fdd-b4db-8dbe939b56b4)
+![image](https://github.com/katulevskiy/tech_layoffs_ml/assets/122564577/161d5cf8-70e8-4fdd-b4db-8dbe939b56b4)
 
- Additionally, we used stock data as another predictor so that we would be able to have a tangible measurement of the economic status: 
- 
- ![image](https://github.com/katulevskiy/tech_layoffs_ml/assets/122564577/af9fb623-4866-4d7c-858e-54fc3f3bcf75)
+Additionally, we used stock data as another predictor so that we would be able to have a tangible measurement of the economic status:
+
+![image](https://github.com/katulevskiy/tech_layoffs_ml/assets/122564577/af9fb623-4866-4d7c-858e-54fc3f3bcf75)
 
 While we recognize that there are many different factors that go into predicting company layoffs, we felt that for our model it would be best to start with stock data (change in price for the last 90 days), the stage of the company, industry, region of the United States, and date.
 
-
-
-### Methods 
+### Methods
 
 #### Data Exploration
 
 #### Preprocessing
 
 #### Models
+
 1. Polynomial Regression
 
-The first model we tried was polynomial regression, during which we tried
-modifying the degree of our polynomial.
+   The first model we tried was polynomial regression, during which we tried
+   modifying the degree of our polynomial.
 
-```py
-logreg = LinearRegression()
+   ```py
+   logreg = LinearRegression()
 
-X_train_np = np.array(X_train)
-y_train_np = np.array(y_train)
-X_train_df = pd.DataFrame(X_train_np)
-y_train_df = pd.DataFrame(y_train_np)
+   X_train_np = np.array(X_train)
+   y_train_np = np.array(y_train)
+   X_train_df = pd.DataFrame(X_train_np)
+   y_train_df = pd.DataFrame(y_train_np)
 
-logreg.fit(X_train_df, y_train_df)
-```
+   logreg.fit(X_train_df, y_train_df)
+   ```
 
-```py
-for k in range(2,5):
-    # Create kth degree polynomial
-    poly = PolynomialFeatures(k)
+   ```py
+   for k in range(2,5):
+      # Create kth degree polynomial
+      poly = PolynomialFeatures(k)
 
-    # Convert features to fit polynomial model
-    train_features = poly.fit_transform(X_train_df)
-    test_features = poly.fit_transform(X_test)
+      # Convert features to fit polynomial model
+      train_features = poly.fit_transform(X_train_df)
+      test_features = poly.fit_transform(X_test)
 
-    # Create polynomial regression
-    polyreg = LinearRegression()
-    polyreg.fit(train_features, y_train_df)
-```
+      # Create polynomial regression
+      polyreg = LinearRegression()
+      polyreg.fit(train_features, y_train_df)
+   ```
 
 2. Neural Network
-2.1. Grid-Search Optimized Neural Network
 
-The next model ran was a Grid Search-optimized neural network, during which the hyperparameter was to modify the number of units in each hidden layer of the network and the activation function in the hidden and output layers.
+   2.1. Grid-Search Optimized Neural Network
 
-```py
-def buildHPmodel(hp):
-  model= Sequential([
-      Dense(12, activation = 'sigmoid', input_dim = 51),
-      Dense(units=hp.Int("units1", min_value=3, max_value=24, step=5),activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
-      Dense(units=hp.Int("units1", min_value=3, max_value=24, step=5),activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
-      Dense(units=hp.Int("units1", min_value=3, max_value=24, step=5),activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
-      Dense(units=1,activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
-])
-  learning_rate = hp.Float("lr", min_value=0.05, max_value=0.3, sampling="log")
-  model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mse'])
-  return model
+   The next model ran was a Grid Search-optimized neural network, during which the hyperparameter was to modify the number of units in each hidden layer of the network and the activation function in the hidden and output layers.
 
-```
+   ```py
+   def buildHPmodel(hp):
+   model= Sequential([
+         Dense(12, activation = 'sigmoid', input_dim = 51),
+         Dense(units=hp.Int("units1", min_value=3, max_value=24, step=5),activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
+         Dense(units=hp.Int("units1", min_value=3, max_value=24, step=5),activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
+         Dense(units=hp.Int("units1", min_value=3, max_value=24, step=5),activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
+         Dense(units=1,activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
+   ])
+   learning_rate = hp.Float("lr", min_value=0.05, max_value=0.3, sampling="log")
+   model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mse'])
+   return model
 
-2.2. K-Fold Cross Validation
+   ```
+
+   2.2. K-Fold Cross Validation
+
 3. Random Forest
 
+   The third and final model we used was a Random Forest Regressor. Using a sort of "in-house" grid search, we modified the number of trees in the forest, the depth of each tree, and the number of samples to split a node on.
+
+   Creating the model using the `sklearn.ensemble` kit allowed for simple library calls to create and predict with the model.
+
+   ```py
+   rf = RandomForestRegressor(random_state = 42, max_depth = 10, min_samples_split=10)
+   rf_predictions_test = rf.predict(X_test)
+   rf_predictions_train = rf.predict(X_train)
+   ```
+
+   To run Grid Search and actually store the MSE results with each possible iteration, we created our own arrays of parameters and iterated through.
+
+   ```py
+   n_estimators = [int(x) for x in np.linspace(start = 50, stop = 150, num = 10)]
+   max_depth = [int(x) for x in np.linspace(10, 110, num = 11)]
+   max_depth.append(None)
+   min_samples_split = [2, 5, 10]
+
+   bestMSE = None
+   bestEstimator = 0
+   bestDepth = 0
+   bestSamples = 0
+   mses = []
+
+   for estimator in n_estimators:
+      temp1 = []
+      for depth in max_depth:
+         temp2 = []
+         for samples_split in min_samples_split:
+               rf = RandomForestRegressor(n_estimators=estimator, max_depth=depth, min_samples_split=samples_split, random_state = 42)
+               rf.fit(X_train, y_train)
+               predictions_test = rf.predict(X_test)
+               mse_test = mean_squared_error(predictions_test, y_test)
+               temp2.append(mse_test)
+               if bestMSE is None or mse_test < bestMSE:
+                  bestMSE = mse_test
+                  bestEstimator = estimator
+                  bestDepth = depth
+                  bestSamples = samples_split
+         temp1.append(temp2)
+      mses.append(temp1)
+   ```
 
 ### Results
 
+We found that each model had its own unique strengths and weaknesses, but some models performed better than others on our specified task. The train and test MSE of each model is summarized in the table below:
+
+|           | Polynomial Regression | Neural Network | Random Forest |
+| --------- | --------------------- | -------------- | ------------- |
+| Train MSE | 484.89                | 407.68         | 108.01        |
+| Test MSE  | 409.13                | 344.08         | 258.05        |
+
+Note that for each of these models, only the best set of train and test MSEs are reported. In reality, different iterations and hyperparameters gave different errors; these nuances are outlined in the sections below.
+
 1. Polynomial Regression
 
-From our first model, we found the following MSEs for polynomials of degrees 1 to 4:
+   From our first model, we found the following MSEs for polynomials of degrees 1 to 4:
 
-|      Degree: |    1   |    2   |    3   |    4   |
-|-------------:|:------:|:------:|:------:|:------:|
-| Training MSE | 484.89 | 518.52 | 531.32 | 455.39 |
-|  Testing MSE | 409.13 | 667.18 | 624.80 | 880.05 |
+   |      Degree: |   1    |   2    |   3    |   4    |
+   | -----------: | :----: | :----: | :----: | :----: |
+   | Training MSE | 484.89 | 518.52 | 531.32 | 455.39 |
+   |  Testing MSE | 409.13 | 667.18 | 624.80 | 880.05 |
 
-Plotted on a graph, the training and testing MSEs look as follows:
+   Plotted on a graph, the training and testing MSEs look as follows:
 
-![Training and Testing MSE vs Degree](images/polyreg-mse.png)
+   ![Training and Testing MSE vs Degree](images/polyreg-mse.png)
 
-3. GridSearch Optimized Neural Network
+2. GridSearch Optimized Neural Network
 
-The best model was chosen based on the set of hyperparameters that performed best on the validation set. The following results were obtained:
+   The best model was chosen based on the set of hyperparameters that performed best on the validation set. The following results were obtained:
 
-```
-Model: "sequential"
-_________________________________________________________________| ________________________ |
- Layer (type)                Output Shape              Param #   | Trial 18 summary         |
-=================================================================| ======================== |
- dense (Dense)               (None, 12)                624       | Hyperparameters:         |
- dense_1 (Dense)             (None, 3)                 39        | units1: 3                |
- dense_2 (Dense)             (None, 3)                 12        | acttype: relu            |
- dense_3 (Dense)             (None, 3)                 12        | lr: 0.19168293127388178  |
- dense_4 (Dense)             (None, 1)                 4         | Score: 229.6578369140625 |
-```
-| Hyperparameter Trial: |     18     |    47     |   46   |
-|----------------------:|:---------:|:-------:|:----------:|
-| Validation MSE          | 222.83517 | 232.19811 | 400.67580 |
-|  Testing MSE          | 344.07788 |         |        |
-|  Training MSE          | 407.67958 |         |      |
+   ```
+   Model: "sequential"
+   _________________________________________________________________| ________________________ |
+   Layer (type)                Output Shape              Param #   | Trial 18 summary         |
+   =================================================================| ======================== |
+   dense (Dense)               (None, 12)                624       | Hyperparameters:         |
+   dense_1 (Dense)             (None, 3)                 39        | units1: 3                |
+   dense_2 (Dense)             (None, 3)                 12        | acttype: relu            |
+   dense_3 (Dense)             (None, 3)                 12        | lr: 0.19168293127388178  |
+   dense_4 (Dense)             (None, 1)                 4         | Score: 229.6578369140625 |
+   ```
 
-After optimizing the model with Grid Search, Model 2 performs a lot better, with the best trial activation type = 'relu', the number of nodes in each layer (aside from the first) = 3, and the lr = 0.192. While it performs worse on the training data set than validation, this phenomenon occurs because during Grid Search, the set of 'best' hyperparameters is decided based on its best performance with regards to the validation MSE. The result of this could potentially be from random choice, where by chance it may have performed the best on that specific validation dataset.
+   | Hyperparameter Trial: |    18     |    47     |    46     |
+   | --------------------: | :-------: | :-------: | :-------: |
+   |        Validation MSE | 222.83517 | 232.19811 | 400.67580 |
+   |           Testing MSE | 344.07788 |           |           |
+   |          Training MSE | 407.67958 |           |           |
 
+   After optimizing the model with Grid Search, Model 2 performs a lot better, with the best trial activation type = 'relu', the number of nodes in each layer (aside from the first) = 3, and the lr = 0.192. While it performs worse on the training data set than validation, this phenomenon occurs because during Grid Search, the set of 'best' hyperparameters is decided based on its best performance with regards to the validation MSE. The result of this could potentially be from random choice, where by chance it may have performed the best on that specific validation dataset.
 
-### Discussion 
+3. Random Forest Regression
 
+   Before running grid search, our Random Forest model still generally performed well on the predictive task, with a train MSE of 129.87 and a test MSE of 267.52. With the search, we were able to slightly improve our train and test MSEs to 108.01 and 258.05, respectively. The differences before and after are highlighted below (the last three entries are hyperparameters that got modified):
 
+   |              Value: | Before | After  |
+   | ------------------: | :----: | :----: |
+   |         Testing MSE | 267.52 | 258.05 |
+   |        Training MSE | 129.87 | 108.01 |
+   |      `n_estimators` |  100   |   94   |
+   |         `max_depth` |   10   |   20   |
+   | `min_samples_split` |   10   |   2    |
 
-### Conclusion 
+   As visible above, the hyperparameters were slightly modified during grid search, giving us a more optimal model that performed better on the test set. Since the set of optimal hyperparameters is decided based on the test set, it may be worth experimenting more with methods such as KFold Cross Validation in the future to further eliminate bias.
 
-### Collaboration 
+   As a supplement, we held `max_depth=20` and `min_samples_split=2` constant, and plotted the results of varying `n_estimators` against the MSE. The graph clearly demonstrates that `n_estimators=94` is an optimal value, given the other set of hyperparameters.
+
+   ![MSE vs n_estimators](images/MSEvsEstimators.png)
+
+   Furthermore, the `sklearn` module for Random Forest Regression allows for feature importance extraction, the results of which are displayed in the pie chart below.
+
+   ![Feature Importance](images/FeatureImportance.png)
+
+### Discussion
+
+### Conclusion
+
+### Collaboration
+
 1. Name: Ryan Ding
    <p> Contribution:
 2. Name: Harsh Gurnani
@@ -235,7 +308,7 @@ After optimizing the model with Grid Search, Model 2 performs a lot better, with
 4. Name: Kenneth Nguyen
    <p> Contribution:
 5. Name: Charisse Chua
-   <p> Contribution: 
+   <p> Contribution:
 6. Name: Kevin Do
    <p> Contribution:
 7. Name: Peter Lee
