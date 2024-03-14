@@ -157,7 +157,7 @@ for k in range(2,5):
 ```
 
 2. Neural Network
-3. Grid-Search Optimized Neural Network
+2.1. Grid-Search Optimized Neural Network
 
 The next model ran was a Grid Search-optimized neural network, during which the hyperparameter was to modify the number of units in each hidden layer of the network and the activation function in the hidden and output layers.
 
@@ -176,8 +176,8 @@ def buildHPmodel(hp):
 
 ```
 
-4. K-Fold Cross Validation
-5. Random Forest
+2.2. K-Fold Cross Validation
+3. Random Forest
 
 
 ### Results
