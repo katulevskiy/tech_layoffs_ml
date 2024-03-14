@@ -97,3 +97,152 @@ The next model we are thinking of implementing is a Random Forest Regressor. A R
 ### Model 2 Conclusion
 
 Although our initial base model for our second model performed much worse than the first (786.068 training MSE compared to 455.386 training MSE in the first model), after performing hyperparameter tuning, our second model improved a lot more. Our final MSE for model 2 was 407.679 training and 344.077 testing. This performed a lot better because we did grid search which computes the optimum hyperparameters to use to predict our data. It performed a lot better than our first model because our first model was just polynomial regression, and neural networks can adapt much better to complex datasets. In order to improve it, we could have done k-fold cross validation instead of using the same validation set every time, because otherwise it gets too specific on one single validation set that doesn’t necessarily train it on all of the different sets it could be on. Also, because not every feature is really impactful for our predictions, we could have isolated only the more influential features and made our predictions from there. This is why we are thinking of doing a random forest model as our model 3 because it will allow us to be more focused in what we use to train.
+
+## Final Project Submission 
+
+### Introduction 
+In today’s ever changing economy, companies are constantly needing to make restructuring adjustments, including layoffs. Though this is often a necessary change, employees at companies planning to do layoffs might feel completely blindsided as they often don’t know how many people are actually being laid off. 
+We wanted to create a layoff predictor to help employees know what to expect when they find out that their company is already planning to lay off people. It helps employees think about what their position is at the company, and they can make preparations based on how likely they are to be laid off based on the percentage of people we predict to be laid off. They can start preparing and looking for jobs at other companies if necessary. 
+
+
+Additionally, it can also be helpful for companies who know that they should lay off employees, but don’t know what percentage of their staff that they should actually lay off. Our predictor can be used as a guiding indicator of what is recommended based on other companies in that situation and the status of the economy at the time. It can help prevent companies from accidentally laying off too many people, or not laying off enough people and needing to do a second round of layoffs. 
+
+We used a kaggle dataset that had tech layoff data from 2020-2024. We isolated only the entries from the US. You can see the trends of layoffs below: 
+
+ ![image](https://github.com/katulevskiy/tech_layoffs_ml/assets/122564577/161d5cf8-70e8-4fdd-b4db-8dbe939b56b4)
+
+ Additionally, we used stock data as another predictor so that we would be able to have a tangible measurement of the economic status: 
+ 
+ ![image](https://github.com/katulevskiy/tech_layoffs_ml/assets/122564577/af9fb623-4866-4d7c-858e-54fc3f3bcf75)
+
+While we recognize that there are many different factors that go into predicting company layoffs, we felt that for our model it would be best to start with stock data (change in price for the last 90 days), the stage of the company, industry, region of the United States, and date.
+
+
+
+### Methods 
+
+#### Data Exploration
+
+#### Preprocessing
+
+#### Models
+1. Polynomial Regression
+
+The first model we tried was polynomial regression, during which we tried
+modifying the degree of our polynomial.
+
+```py
+logreg = LinearRegression()
+
+X_train_np = np.array(X_train)
+y_train_np = np.array(y_train)
+X_train_df = pd.DataFrame(X_train_np)
+y_train_df = pd.DataFrame(y_train_np)
+
+logreg.fit(X_train_df, y_train_df)
+```
+
+```py
+for k in range(2,5):
+    # Create kth degree polynomial
+    poly = PolynomialFeatures(k)
+
+    # Convert features to fit polynomial model
+    train_features = poly.fit_transform(X_train_df)
+    test_features = poly.fit_transform(X_test)
+
+    # Create polynomial regression
+    polyreg = LinearRegression()
+    polyreg.fit(train_features, y_train_df)
+```
+
+2. Neural Network
+2.1. Grid-Search Optimized Neural Network
+
+The next model ran was a Grid Search-optimized neural network, during which the hyperparameter was to modify the number of units in each hidden layer of the network and the activation function in the hidden and output layers.
+
+```py
+def buildHPmodel(hp):
+  model= Sequential([
+      Dense(12, activation = 'sigmoid', input_dim = 51),
+      Dense(units=hp.Int("units1", min_value=3, max_value=24, step=5),activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
+      Dense(units=hp.Int("units1", min_value=3, max_value=24, step=5),activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
+      Dense(units=hp.Int("units1", min_value=3, max_value=24, step=5),activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
+      Dense(units=1,activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
+])
+  learning_rate = hp.Float("lr", min_value=0.05, max_value=0.3, sampling="log")
+  model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mse'])
+  return model
+
+```
+
+2.2. K-Fold Cross Validation
+3. Random Forest
+
+
+### Results
+
+1. Polynomial Regression
+
+From our first model, we found the following MSEs for polynomials of degrees 1 to 4:
+
+|      Degree: |    1   |    2   |    3   |    4   |
+|-------------:|:------:|:------:|:------:|:------:|
+| Training MSE | 484.89 | 518.52 | 531.32 | 455.39 |
+|  Testing MSE | 409.13 | 667.18 | 624.80 | 880.05 |
+
+Plotted on a graph, the training and testing MSEs look as follows:
+
+![Training and Testing MSE vs Degree](images/polyreg-mse.png)
+
+3. GridSearch Optimized Neural Network
+
+The best model was chosen based on the set of hyperparameters that performed best on the validation set. The following results were obtained:
+
+```
+Model: "sequential"
+_________________________________________________________________| ________________________ |
+ Layer (type)                Output Shape              Param #   | Trial 18 summary         |
+=================================================================| ======================== |
+ dense (Dense)               (None, 12)                624       | Hyperparameters:         |
+ dense_1 (Dense)             (None, 3)                 39        | units1: 3                |
+ dense_2 (Dense)             (None, 3)                 12        | acttype: relu            |
+ dense_3 (Dense)             (None, 3)                 12        | lr: 0.19168293127388178  |
+ dense_4 (Dense)             (None, 1)                 4         | Score: 229.6578369140625 |
+```
+| Hyperparameter Trial: |     18     |    47     |   46   |
+|----------------------:|:---------:|:-------:|:----------:|
+| Validation MSE          | 222.83517 | 232.19811 | 400.67580 |
+|  Testing MSE          | 344.07788 |         |        |
+|  Training MSE          | 407.67958 |         |      |
+
+After optimizing the model with Grid Search, Model 2 performs a lot better, with the best trial activation type = 'relu', the number of nodes in each layer (aside from the first) = 3, and the lr = 0.192. While it performs worse on the training data set than validation, this phenomenon occurs because during Grid Search, the set of 'best' hyperparameters is decided based on its best performance with regards to the validation MSE. The result of this could potentially be from random choice, where by chance it may have performed the best on that specific validation dataset.
+
+
+### Discussion 
+
+
+
+### Conclusion 
+
+### Collaboration 
+1. Name: Ryan Ding
+   <p> Contribution:
+2. Name: Harsh Gurnani
+   <p> Contribution:
+3. Name: Michael Boyko
+   <p> Contribution:
+4. Name: Kenneth Nguyen
+   <p> Contribution:
+5. Name: Charisse Chua
+   <p> Contribution: 
+6. Name: Kevin Do
+   <p> Contribution:
+7. Name: Peter Lee
+   <p> Contribution:
+8. Name: Bella Jeong
+   <p> Contribution:
+9. Name: Daniil Katulevskiy
+   <p> Contribution:
+10. Name: Cedric-James David
+    <p> Contribution:
