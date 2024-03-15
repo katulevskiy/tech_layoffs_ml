@@ -339,9 +339,40 @@ Note that for each of these models, only the best set of train and test MSEs are
    | Training MSE | 386.46         | 
    |  Testing MSE | 290.17         |
 
-2. Neural Network
+2. Neural Networks
 
-   2.1 Grid Search Optimized Neural Network
+    2.1 Base Neural Network
+
+    2.2 K-Fold Cross Validation
+
+      10 splits of the validation set were trained on leveling off the Average MSE to similar testing and training MSE values.
+      
+      ```
+      Fold 1 MSE for training: 800.3483
+      Fold 1 MSE for testing: 659.3152
+      Fold 2 MSE for training: 781.0257
+      Fold 2 MSE for testing: 831.5279
+      Fold 3 MSE for training: 780.2587
+      Fold 3 MSE for testing: 838.4422
+      Fold 4 MSE for training: 757.5928
+      Fold 4 MSE for testing: 1042.7502
+      Fold 5 MSE for training: 766.5234
+      Fold 5 MSE for testing: 962.2502
+      Fold 6 MSE for training: 759.6024
+      Fold 6 MSE for testing: 1024.6353
+      Fold 7 MSE for training: 793.1397
+      Fold 7 MSE for testing: 722.3335
+      Fold 8 MSE for training: 801.9471
+      Fold 8 MSE for testing: 642.9446
+      Fold 9 MSE for training: 809.1474
+      Fold 9 MSE for testing: 578.0418
+      Fold 10 MSE for training: 811.1258
+      Fold 10 MSE for testing: 560.2088
+      Average MSE for training: 786.0711
+      Average MSE for testing: 786.2450
+      ```
+
+   2.3 Grid Search Optimized Neural Network
    The best model was chosen based on the set of hyperparameters that performed best on the validation set. The following results were obtained:
 
    ```
@@ -362,38 +393,11 @@ Note that for each of these models, only the best set of train and test MSEs are
    |           Testing MSE | 344.07788 |           |           |
    |          Training MSE | 407.67958 |           |           |
 
-   After optimizing the model with Grid Search, Model 2 performs a lot better, with the best trial activation type = 'relu', the number of nodes in each layer (aside from the first) = 3, and the lr = 0.192. While it performs worse on the training data set than validation, this phenomenon occurs because during Grid Search, the set of 'best' hyperparameters is decided based on its best performance with regards to the validation MSE. The result of this could potentially be from random choice, where by chance it may have performed the best on that specific validation dataset.
+   After optimizing the model with Grid Search, the best trial activation type = 'relu', the number of nodes in each layer (aside from the first) = 3, and the lr = 0.192. 
 
-   2.2 K-Fold Cross Validation
 
-10 splits of the validation set were trained on leveling off the Average MSE to similar testing and training MSE values.
 
-```
-Fold 1 MSE for training: 800.3483
-Fold 1 MSE for testing: 659.3152
-Fold 2 MSE for training: 781.0257
-Fold 2 MSE for testing: 831.5279
-Fold 3 MSE for training: 780.2587
-Fold 3 MSE for testing: 838.4422
-Fold 4 MSE for training: 757.5928
-Fold 4 MSE for testing: 1042.7502
-Fold 5 MSE for training: 766.5234
-Fold 5 MSE for testing: 962.2502
-Fold 6 MSE for training: 759.6024
-Fold 6 MSE for testing: 1024.6353
-Fold 7 MSE for training: 793.1397
-Fold 7 MSE for testing: 722.3335
-Fold 8 MSE for training: 801.9471
-Fold 8 MSE for testing: 642.9446
-Fold 9 MSE for training: 809.1474
-Fold 9 MSE for testing: 578.0418
-Fold 10 MSE for training: 811.1258
-Fold 10 MSE for testing: 560.2088
-Average MSE for training: 786.0711
-Average MSE for testing: 786.2450
-```
-
-3. Random Forest Regression
+4. Random Forest Regression
 
    Before running grid search, our Random Forest model still generally performed well on the predictive task, with a train MSE of 129.87 and a test MSE of 267.52. With the search, we were able to slightly improve our train and test MSEs to 108.01 and 258.05, respectively. The differences before and after are highlighted below (the last three entries are hyperparameters that got modified):
 
@@ -421,7 +425,7 @@ For our task, we decided to start off with simple regression models (linear, pol
 
 We then moved on to a neural net as our next model. Assuming that our data had complex, non-linear relationships from the poor performance of our regression models, we decided that a neural net may perform better for this type of problem. We did not perform any hyperparameter tuning in the beginning and got results in MSE and accuracy similarly high to that of the regression models. In hopes that this was not the case, we ran k-fold cross-validation to check if our neural network was truly not optimal. After finding high MSE values at each iteration, we confirmed that our base neural net model was not optimal at all.
 
-From our findings from k-fold cross-validation, we decided to implement Grid search in hopes of optimizing our model. We experimented with learning rates, activation functions, and number of nodes per layer in order to optimize our MSE, our main metric of loss. As a result, we were able to find an optimal number of units per layer, being 3 nodes (aside from the first layer being 12), an optimal activation function in ReLU, and an optimal learning rate in 0.19168 that improved our baseline model. Our MSE was able to go from roughly 800 and 600 for the training and testing MSE respectively to 400 and 350! From this, we were able to tell that our data had a more complex relationship that could not be described through basic regression models.
+From our findings from k-fold cross-validation, we decided to implement Grid search in hopes of optimizing our model. While it performs worse on the training data set than validation, this phenomenon occurs because during Grid Search, the set of 'best' hyperparameters is decided based on its best performance with regards to the validation MSE. The result of this could potentially be from random choice, where by chance it may have performed the best on that specific validation dataset. We experimented with learning rates, activation functions, and number of nodes per layer in order to optimize our MSE, our main metric of loss. As a result, we were able to find an optimal number of units per layer, being 3 nodes (aside from the first layer being 12), an optimal activation function in ReLU, and an optimal learning rate in 0.19168 that improved our baseline model. Our MSE was able to go from roughly 800 and 600 for the training and testing MSE respectively to 400 and 350! From this, we were able to tell that our data had a more complex relationship that could not be described through basic regression models.
 
 However, there were shortcomings of using this model. MSE is an error measure that places equal emphasis on each observation in our model. As a result of this, our model was sensitive to noise within our observations, which may have prevented the model from performing better on our dataset. Additionally, while neural networks are a good model to use for most machine learning tasks, we realize that different models may be better suited towards time series data.
 
