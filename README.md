@@ -399,7 +399,7 @@ Our wariness of the limitations of our current model and our desire to improve o
 3. Name: Michael Boyko
    <p> Contribution:
 4. Name: Kenneth Nguyen
-   <p> Contribution:
+   <p> Contribution: Worked mostly on the coding side, especially on data exploration, preprocessing, and the Model 2.1 Grid Search.
 5. Name: Charisse Chua
    <p> Contribution:
 6. Name: Kevin Do
