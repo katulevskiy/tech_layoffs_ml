@@ -325,6 +325,34 @@ Note that for each of these models, only the best set of train and test MSEs are
 
    After optimizing the model with Grid Search, Model 2 performs a lot better, with the best trial activation type = 'relu', the number of nodes in each layer (aside from the first) = 3, and the lr = 0.192. While it performs worse on the training data set than validation, this phenomenon occurs because during Grid Search, the set of 'best' hyperparameters is decided based on its best performance with regards to the validation MSE. The result of this could potentially be from random choice, where by chance it may have performed the best on that specific validation dataset.
 
+2.2 K-Fold Cross Validation
+
+  10 splits of the validation set were trained on leveling off the Average MSE to similar testing and training MSE values.
+  ```
+  Fold 1 MSE for training: 800.3483
+  Fold 1 MSE for testing: 659.3152
+  Fold 2 MSE for training: 781.0257
+  Fold 2 MSE for testing: 831.5279
+  Fold 3 MSE for training: 780.2587
+  Fold 3 MSE for testing: 838.4422
+  Fold 4 MSE for training: 757.5928
+  Fold 4 MSE for testing: 1042.7502
+  Fold 5 MSE for training: 766.5234
+  Fold 5 MSE for testing: 962.2502
+  Fold 6 MSE for training: 759.6024
+  Fold 6 MSE for testing: 1024.6353
+  Fold 7 MSE for training: 793.1397
+  Fold 7 MSE for testing: 722.3335
+  Fold 8 MSE for training: 801.9471
+  Fold 8 MSE for testing: 642.9446
+  Fold 9 MSE for training: 809.1474
+  Fold 9 MSE for testing: 578.0418
+  Fold 10 MSE for training: 811.1258
+  Fold 10 MSE for testing: 560.2088
+  Average MSE for training: 786.0711
+  Average MSE for testing: 786.2450
+  ```
+
 3. Random Forest Regression
 
    Before running grid search, our Random Forest model still generally performed well on the predictive task, with a train MSE of 129.87 and a test MSE of 267.52. With the search, we were able to slightly improve our train and test MSEs to 108.01 and 258.05, respectively. The differences before and after are highlighted below (the last three entries are hyperparameters that got modified):
