@@ -299,6 +299,7 @@ After 10 splits of the validation data, the trained models did not produce bette
 
 We found that each model had its own unique strengths and weaknesses, but some models performed better than others on our specified task. The train and test MSE of each model is summarized in the table below:
 
+
 |           | Regression-based             | Neural Network | Random Forest |
 | --------- | ---------------------------- | -------------- | ------------- |
 | Train MSE | 386.46                       | 407.68         | 108.01        |
@@ -306,10 +307,20 @@ We found that each model had its own unique strengths and weaknesses, but some m
 
 Note that for each of these models, only the best set of train and test MSEs are reported. In reality, different iterations and hyperparameters gave different errors; these nuances are outlined in the sections below.
 
-1. Polynomial Regression
+1. Regression-based Modeling
 
-   From our first model, we found the following MSEs for polynomials of degrees 1 (which is just a linear regression) to 4:
-
+  1.1 Linear Regression
+  
+  The following MSEs were found from running a Multilinear Regression.
+  ```
+  MSE_train: 484.8927144143591
+  MSE_test: 409.126023109986
+  ```
+  
+   
+  1.2 Polynomial Regression
+  
+  From our first model, we found the following MSEs for polynomials of degrees 1 (which is just a linear regression) to 4:
    |      Degree |   1    |   2    |   3    |   4    |
    | :-----------: | :----: | :----: | :----: | :----: |
    | Training MSE | 484.89 | 518.52 | 531.32 | 455.39 |
@@ -319,7 +330,7 @@ Note that for each of these models, only the best set of train and test MSEs are
 
    ![Training and Testing MSE vs Degree](images/polyreg-mse.png)
 
-   1.1 ARD Regression:
+   1.3 ARD Regression:
   Running the ARD Regression, the below results were obtained for the train and test MSE.
 
    |              | ARD Regression |
