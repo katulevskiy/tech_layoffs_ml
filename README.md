@@ -205,7 +205,7 @@ Our dataset comprises records from multiple companies, encompassing various econ
   
    2.1. Grid-Search Optimized Neural Network
 
-   The next model ran was a Grid Search-optimized neural network, during which the hyperparameter was to modify the number of units in each hidden layer of the network and the activation function in the hidden and output layers.
+   To tune the poor performing Neural Network, we ran Grid Search to fine tune the neural network; during which hyperparameters were modified including the number of units in each hidden layer of the network as well as the activation function in the hidden and output layers.
 
    ```py
    def buildHPmodel(hp):
@@ -224,11 +224,11 @@ Our dataset comprises records from multiple companies, encompassing various econ
 
    2.2. K-Fold Cross Validation
    
-   We ran a K-fold Cross Validation:
+  K-fold Cross Validation was also run to determine if overfitting was occuring:
   ```
   kfold = RepeatedKFold(n_splits=10, n_repeats=1, random_state=1)
   ```
-  10 splits of the validation data which did not produce better results, but cross validation did level the training and testing MSE. The underlying reason for the poor performance was again the sigmoid activation function used throughout the K-Fold Cross Validation as well as the base Neural Network Model.
+  After 10 splits of the validation data, the trained models did not produce better results, but cross validation did level the training and testing MSE average. The underlying reason for the poor performance was again the sigmoid activation function used throughout the K-Fold Cross Validation as well as the base Neural Network Model.
 
 
 3. Random Forest
@@ -300,8 +300,9 @@ Note that for each of these models, only the best set of train and test MSEs are
 
    ![Training and Testing MSE vs Degree](images/polyreg-mse.png)
 
-2. GridSearch Optimized Neural Network
+2. Neural Network
 
+2.1 GridSearch Optimized Neural Network
    The best model was chosen based on the set of hyperparameters that performed best on the validation set. The following results were obtained:
 
    ```
