@@ -1,4 +1,4 @@
-![image](https://github.com/katulevskiy/tech_layoffs_ml/assets/63518165/bbf8220d-0c07-4686-bfd6-177f4512114e)# PROJECT DOCUMENTATION
+# PROJECT DOCUMENTATION
 
 Based on https://www.kaggle.com/datasets/ulrikeherold/tech-layoffs-2020-2024/data
 
