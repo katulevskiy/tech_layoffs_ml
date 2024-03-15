@@ -3,6 +3,7 @@
 Based on https://www.kaggle.com/datasets/ulrikeherold/tech-layoffs-2020-2024/data
 
 ## Model setup
+
 To ensure that you are able to reproduce the results of our models in our task to predict company layoffs, be sure to install all necessary packages from our `requirements.txt` file using the command:
 
 `pip install -r requirements.txt`
@@ -131,20 +132,21 @@ While we recognize that there are many different factors that go into predicting
 
 1. Dataset Overview
 
-Our dataset comprises records from multiple companies, encompassing various economic area. Each record contains information related to company performance, employee count, and economic indicators at the time, along with the percentage of layoffs that occurred. 
+Our dataset comprises records from multiple companies, encompassing various economic area. Each record contains information related to company performance, employee count, and economic indicators at the time, along with the percentage of layoffs that occurred.
 
 2. Preliminary Analysis
-- Variable Identification: We began by identifying each variable in our dataset, classifying them into numerical and categorical types. This action helped in determining the appropriate preprocessing steps for each variable type. 
-- Missing Values and Outliers: An inital cleaning was conducted to identify missing values and outliers. This involved generating summary statistics for numerical variables and frequency counts for categorial variables. 
+
+- Variable Identification: We began by identifying each variable in our dataset, classifying them into numerical and categorical types. This action helped in determining the appropriate preprocessing steps for each variable type.
+- Missing Values and Outliers: An inital cleaning was conducted to identify missing values and outliers. This involved generating summary statistics for numerical variables and frequency counts for categorial variables.
 - Data Visualization: Several visualization were implemented understand the data better:
-   - Histogram and density plots were used to examine the distribution of numerical varaibles.
-   - Box plots helped identify outliers and the spread of data.
-   - A correlation matrix was visualized through a heatmap to identify relationships between numerical variables
+  - Histogram and density plots were used to examine the distribution of numerical varaibles.
+  - Box plots helped identify outliers and the spread of data.
+  - A correlation matrix was visualized through a heatmap to identify relationships between numerical variables
 
 3. Feature Selection
-- We introduced new features that we hypothesized could be significant predictors of layoffs, such as industry performance indicators and company financial health metrics.
-- Feature selection were applied to identify the most relevant variables for predicting layoffs, helping to reduce model complexity and improve interpretability. 
 
+- We introduced new features that we hypothesized could be significant predictors of layoffs, such as industry performance indicators and company financial health metrics.
+- Feature selection were applied to identify the most relevant variables for predicting layoffs, helping to reduce model complexity and improve interpretability.
 
 #### Preprocessing
 
@@ -198,43 +200,44 @@ Our dataset comprises records from multiple companies, encompassing various econ
 
 2. Neural Network
 
-    Our second model was a Neural Network with four hidden layers each with 12 nodes and a sigmoid activation. Our final output layer was a single node with sigmoid as the activation function. However, even though sigmoid outputs a number from 0 to 1, the output does not signify the percentage of layoffs in a company, instead it suggests a binary classification of layoff or not layoff. Our task is to give a user the likely percentage of people to be laid off at a company, but sigmoid does not accomplish this task which leads to its poor performance. The input dimension was set to 51 dimensions because our dataframe has 51 features for each observation.
-  ```py
-        Dense(12, activation='sigmoid', input_dim=51),
-        Dense(12, activation='sigmoid'),
-        Dense(12, activation='sigmoid'),
-        Dense(12, activation='sigmoid'),
-        Dense(1, activation='sigmoid'),
+   Our second model was a Neural Network with four hidden layers each with 12 nodes and a sigmoid activation. Our final output layer was a single node with sigmoid as the activation function. However, even though sigmoid outputs a number from 0 to 1, the output does not signify the percentage of layoffs in a company, instead it suggests a binary classification of layoff or not layoff. Our task is to give a user the likely percentage of people to be laid off at a company, but sigmoid does not accomplish this task which leads to its poor performance. The input dimension was set to 51 dimensions because our dataframe has 51 features for each observation.
+
+```py
+      Dense(12, activation='sigmoid', input_dim=51),
+      Dense(12, activation='sigmoid'),
+      Dense(12, activation='sigmoid'),
+      Dense(12, activation='sigmoid'),
+      Dense(1, activation='sigmoid'),
 ```
 
-  
-   2.1. Grid-Search Optimized Neural Network
+2.1. Grid-Search Optimized Neural Network
 
-   To tune the poor performing Neural Network, we ran Grid Search to fine tune the neural network; during which hyperparameters were modified including the number of units in each hidden layer of the network as well as the activation function in the hidden and output layers.
+To tune the poor performing Neural Network, we ran Grid Search to fine tune the neural network; during which hyperparameters were modified including the number of units in each hidden layer of the network as well as the activation function in the hidden and output layers.
 
-   ```py
-   def buildHPmodel(hp):
-   model= Sequential([
-         Dense(12, activation = 'sigmoid', input_dim = 51),
-         Dense(units=hp.Int("units1", min_value=3, max_value=24, step=5),activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
-         Dense(units=hp.Int("units1", min_value=3, max_value=24, step=5),activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
-         Dense(units=hp.Int("units1", min_value=3, max_value=24, step=5),activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
-         Dense(units=1,activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
-   ])
-   learning_rate = hp.Float("lr", min_value=0.05, max_value=0.3, sampling="log")
-   model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mse'])
-   return model
+```py
+def buildHPmodel(hp):
+model= Sequential([
+      Dense(12, activation = 'sigmoid', input_dim = 51),
+      Dense(units=hp.Int("units1", min_value=3, max_value=24, step=5),activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
+      Dense(units=hp.Int("units1", min_value=3, max_value=24, step=5),activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
+      Dense(units=hp.Int("units1", min_value=3, max_value=24, step=5),activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
+      Dense(units=1,activation=hp.Choice("acttype", ["sigmoid", "relu", "softmax"])),
+])
+learning_rate = hp.Float("lr", min_value=0.05, max_value=0.3, sampling="log")
+model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mse'])
+return model
 
-   ```
+```
 
-   2.2. K-Fold Cross Validation
-   
-  K-fold Cross Validation was also run to determine if overfitting was occuring:
-  ```
-  kfold = RepeatedKFold(n_splits=10, n_repeats=1, random_state=1)
-  ```
-  After 10 splits of the validation data, the trained models did not produce better results, but cross validation did level the training and testing MSE average. The underlying reason for the poor performance was again the sigmoid activation function used throughout the K-Fold Cross Validation as well as the base Neural Network Model.
+2.2. K-Fold Cross Validation
 
+K-fold Cross Validation was also run to determine if overfitting was occuring:
+
+```
+kfold = RepeatedKFold(n_splits=10, n_repeats=1, random_state=1)
+```
+
+After 10 splits of the validation data, the trained models did not produce better results, but cross validation did level the training and testing MSE average. The underlying reason for the poor performance was again the sigmoid activation function used throughout the K-Fold Cross Validation as well as the base Neural Network Model.
 
 3. Random Forest
 
@@ -332,42 +335,43 @@ Note that for each of these models, only the best set of train and test MSEs are
 
    2.2 K-Fold Cross Validation
 
-  10 splits of the validation set were trained on leveling off the Average MSE to similar testing and training MSE values.
-  ```
-  Fold 1 MSE for training: 800.3483
-  Fold 1 MSE for testing: 659.3152
-  Fold 2 MSE for training: 781.0257
-  Fold 2 MSE for testing: 831.5279
-  Fold 3 MSE for training: 780.2587
-  Fold 3 MSE for testing: 838.4422
-  Fold 4 MSE for training: 757.5928
-  Fold 4 MSE for testing: 1042.7502
-  Fold 5 MSE for training: 766.5234
-  Fold 5 MSE for testing: 962.2502
-  Fold 6 MSE for training: 759.6024
-  Fold 6 MSE for testing: 1024.6353
-  Fold 7 MSE for training: 793.1397
-  Fold 7 MSE for testing: 722.3335
-  Fold 8 MSE for training: 801.9471
-  Fold 8 MSE for testing: 642.9446
-  Fold 9 MSE for training: 809.1474
-  Fold 9 MSE for testing: 578.0418
-  Fold 10 MSE for training: 811.1258
-  Fold 10 MSE for testing: 560.2088
-  Average MSE for training: 786.0711
-  Average MSE for testing: 786.2450
-  ```
+10 splits of the validation set were trained on leveling off the Average MSE to similar testing and training MSE values.
+
+```
+Fold 1 MSE for training: 800.3483
+Fold 1 MSE for testing: 659.3152
+Fold 2 MSE for training: 781.0257
+Fold 2 MSE for testing: 831.5279
+Fold 3 MSE for training: 780.2587
+Fold 3 MSE for testing: 838.4422
+Fold 4 MSE for training: 757.5928
+Fold 4 MSE for testing: 1042.7502
+Fold 5 MSE for training: 766.5234
+Fold 5 MSE for testing: 962.2502
+Fold 6 MSE for training: 759.6024
+Fold 6 MSE for testing: 1024.6353
+Fold 7 MSE for training: 793.1397
+Fold 7 MSE for testing: 722.3335
+Fold 8 MSE for training: 801.9471
+Fold 8 MSE for testing: 642.9446
+Fold 9 MSE for training: 809.1474
+Fold 9 MSE for testing: 578.0418
+Fold 10 MSE for training: 811.1258
+Fold 10 MSE for testing: 560.2088
+Average MSE for training: 786.0711
+Average MSE for testing: 786.2450
+```
 
 3. Random Forest Regression
 
    Before running grid search, our Random Forest model still generally performed well on the predictive task, with a train MSE of 129.87 and a test MSE of 267.52. With the search, we were able to slightly improve our train and test MSEs to 108.01 and 258.05, respectively. The differences before and after are highlighted below (the last three entries are hyperparameters that got modified):
 
-   |              Value: | Before | After  |
+   |       Value:        | Before | After  |
    | :-----------------: | :----: | :----: |
-   |         Testing MSE | 267.52 | 258.05 |
-   |        Training MSE | 129.87 | 108.01 |
-   |      `n_estimators` |  100   |   94   |
-   |         `max_depth` |   10   |   20   |
+   |     Testing MSE     | 267.52 | 258.05 |
+   |    Training MSE     | 129.87 | 108.01 |
+   |   `n_estimators`    |  100   |   94   |
+   |     `max_depth`     |   10   |   20   |
    | `min_samples_split` |   10   |   2    |
 
    As visible above, the hyperparameters were slightly modified during grid search, giving us a more optimal model that performed better on the test set. Since the set of optimal hyperparameters is decided based on the test set, it may be worth experimenting more with methods such as KFold Cross Validation in the future to further eliminate bias.
@@ -386,12 +390,13 @@ For our task, we decided to start off with simple regression models (linear, pol
 
 We then moved on to a neural net as our next model. Assuming that our data had complex, non-linear relationships from the poor performance of our regression models, we decided that a neural net may perform better for this type of problem. We did not perform any hyperparameter tuning in the beginning and got results in MSE and accuracy similarly high to that of the regression models. In hopes that this was not the case, we ran k-fold cross-validation to check if our neural network was truly not optimal. After finding high MSE values at each iteration, we confirmed that our base neural net model was not optimal at all.
 
-From our findings from k-fold cross-validation, we decided to implement Grid search in hopes of optimizing our model. We experimented with learning rates, activation functions, and number of nodes per layer in order to optimize our MSE, our main metric of loss. As a result, we were able to find an optimal number of units per layer, being 3 nodes (aside from the first layer being 12), an optimal activation function in ReLU, and an optimal learning rate in 0.19168 that improved our baseline model. Our MSE was able to go from roughly 800 and 600 for the training and testing MSE respectively to 400 and 350! From this, we were able to tell that our data had a more complex relationship that could not be described through basic regression models. 
+From our findings from k-fold cross-validation, we decided to implement Grid search in hopes of optimizing our model. We experimented with learning rates, activation functions, and number of nodes per layer in order to optimize our MSE, our main metric of loss. As a result, we were able to find an optimal number of units per layer, being 3 nodes (aside from the first layer being 12), an optimal activation function in ReLU, and an optimal learning rate in 0.19168 that improved our baseline model. Our MSE was able to go from roughly 800 and 600 for the training and testing MSE respectively to 400 and 350! From this, we were able to tell that our data had a more complex relationship that could not be described through basic regression models.
 
 However, there were shortcomings of using this model. MSE is an error measure that places equal emphasis on each observation in our model. As a result of this, our model was sensitive to noise within our observations, which may have prevented the model from performing better on our dataset. Additionally, while neural networks are a good model to use for most machine learning tasks, we realize that different models may be better suited towards time series data.
- 
-Our wariness of the limitations of our current model and our desire to improve our model even further led us to investigate another model architecture for Model 3. We believed that our MSE of 200-300 was still not ideal (as this meant our actual predictions were within +- 14-17%, a margin that gives rise to significant levels of error) and that it could be decreased even further for our task. In this regard, we decided to utilize a RandomForestRegressor model as this model is also effective at handling non-linear and complex data correlations. Further, the Random Forest Regressor is also less prone to overfitting, which has been an issue for our past models. The model proved highly effective, as we achieved a train MSE of 130 and a test MSE of 267. We decided that it could be optimized even further, and after running Grid search, we found a train MSE of 108 and a test MSE of 258– significantly lower than our original MSEs from our regression baselines at 400-500.
 
+Our wariness of the limitations of our current model and our desire to improve our model even further led us to investigate another model architecture for Model 3. We believed that our MSE of 200-300 was still not ideal (as this meant our actual predictions were within +- 14-17%, a margin that gives rise to significant levels of error) and that it could be decreased even further for our task. In this regard, we decided to utilize a RandomForestRegressor model as this model is also effective at handling non-linear and complex data correlations. The model proved highly effective, as we achieved a train MSE of 130 and a test MSE of 267. We decided that it could be optimized even further, and after running Grid search, we found a train MSE of 108 and a test MSE of 258– significantly lower than our original MSEs from our regression baselines at 400-500.
+
+The Random Forest combines a set of decision trees, each of which uses a different random subset of the features to make decisions on. Therefore, as an ensemble method with random feature selection, the Random Forest Regressor is typically less prone to overfitting, which was an issue for our past models. However, given that our train MSE was significantly lower than that of the test, it is possible that our model overfit. Possible future directions to fix this issue can be to reduce model complexity by lowering tree depth, as well as training with cross-validation.
 
 ### Conclusion
 
@@ -400,7 +405,7 @@ Our wariness of the limitations of our current model and our desire to improve o
 1. Name: Ryan Ding
    <p> Contribution:
 2. Name: Harsh Gurnani
-   <p> Contribution:
+   <p> Contribution: Worked on coding and write-up. Created Model 3 Random Forest Regression with grid search. Wrote information about data exploration, Model 3, and general touch-ups.
 3. Name: Michael Boyko
    <p> Contribution:
 4. Name: Kenneth Nguyen
