@@ -456,7 +456,7 @@ The Random Forest combines a set of decision trees, each of which uses a differe
 6. Name: Kevin Do
    <p> Contribution: Worked on data exploration, data pre-processing (eliminated irrelevant features, encoded features to be numerical, created one hot encoding, conducted splitting for training and testing), and collaborated on Model 2.1 Grid Search.
 7. Name: Peter Lee
-   <p> Contribution:
+   <p> Contribution: Preprocessing, created Model 1 with linear and polynomial regression, documented and narrated results for README across all models.
 8. Name: Bella Jeong
    <p> Contribution:
 9. Name: Daniil Katulevskiy
