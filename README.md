@@ -6,7 +6,9 @@ Based on https://www.kaggle.com/datasets/ulrikeherold/tech-layoffs-2020-2024/dat
 
 To ensure that you are able to reproduce the results of our models in our task to predict company layoffs, be sure to install all necessary packages from our `requirements.txt` file using the command:
 
-`pip install -r requirements.txt`
+```py
+pip install -r requirements.txt
+```
 
 ## Data pre-processing
 
@@ -403,7 +405,7 @@ The Random Forest combines a set of decision trees, each of which uses a differe
 ### Collaboration
 
 1. Name: Ryan Ding
-   <p> Contribution:
+   <p> Contribution: Worked on the discussion, Model #1, organizing jypnb file into narrative
 2. Name: Harsh Gurnani
    <p> Contribution: Worked on coding and write-up. Created Model 3 Random Forest Regression with grid search. Wrote information about data exploration, Model 3, and general touch-ups.
 3. Name: Michael Boyko
