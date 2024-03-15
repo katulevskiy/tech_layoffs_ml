@@ -172,9 +172,11 @@ Our dataset comprises records from multiple companies, encompassing various econ
 
 1. Regression-based modeling
 
-   We first tried a number of regression models, ranging from basic Multilinear Regression, to Polynomial Regression in order to transform the data, and finally Automatic Relevance Determinantion (ARD) Regression to see if any of these were able to perform well on our predictive task.
+   We first tried a number of regression models, ranging from basic Multilinear Regression, to Polynomial Regression in order to transform the data, and finally Automatic Relevance Determinantion (ARD) Regression.
 
-  We started off with a basic Multilinear regression model as shown below, and used MSE as our loss function to measure its performance:
+  1.1 Multilinear Regression
+  
+  As shown below, the below Linear Regression is created with MSE as the loss function:
 
    ```py
    linreg = LinearRegression()
@@ -184,7 +186,8 @@ Our dataset comprises records from multiple companies, encompassing various econ
    MSE_train, MSE_test = np.mean((y_train.values - yhat_train)**2), np.mean((y_test.values - yhat_test)**2)
    ```
 
-  Then, we moved towards Polynomial Regression of degrees 2, 3, and 4 in order to see if transforming our features would allow us to better predict our target:
+  1.2 Polynomial Regression of degrees 2, 3, and 4
+  
   
    ```py
    for k in range(2,5):
@@ -200,8 +203,7 @@ Our dataset comprises records from multiple companies, encompassing various econ
       polyreg.fit(train_features, y_train_df)
    ```
 
-  Finally, we looked at ARD Regression, which uses prior probabilities to make educated guesses on which features are most relevant to the data, and then shrinks the coefficients of lesser important features to improve the model's   
-  accuracy while maintaining its simplicity as a regression model:
+  1.3 ARD Regression
 
   ```py
   ard = ARDRegression().fit(X_train, y_train_df)
@@ -213,17 +215,17 @@ Our dataset comprises records from multiple companies, encompassing various econ
 
    Our second model was a Neural Network with four hidden layers each with 12 nodes and a sigmoid activation. Our final output layer was a single node with sigmoid as the activation function. However, even though sigmoid outputs a number from 0 to 1, the output does not signify the percentage of layoffs in a company, instead it suggests a binary classification of layoff or not layoff. Our task is to give a user the likely percentage of people to be laid off at a company, but sigmoid does not accomplish this task which leads to its poor performance. The input dimension was set to 51 dimensions because our dataframe has 51 features for each observation.
 
-```py
-      Dense(12, activation='sigmoid', input_dim=51),
-      Dense(12, activation='sigmoid'),
-      Dense(12, activation='sigmoid'),
-      Dense(12, activation='sigmoid'),
-      Dense(1, activation='sigmoid'),
-```
+  ```py
+        Dense(12, activation='sigmoid', input_dim=51),
+        Dense(12, activation='sigmoid'),
+        Dense(12, activation='sigmoid'),
+        Dense(12, activation='sigmoid'),
+        Dense(1, activation='sigmoid'),
+  ```
 
-2.1. Grid-Search Optimized Neural Network
+  2.1. Grid-Search Optimized Neural Network
 
-To tune the poor performing Neural Network, we ran Grid Search to fine tune the neural network; during which hyperparameters were modified including the number of units in each hidden layer of the network as well as the activation function in the hidden and output layers.
+  To tune the poor performing Neural Network, we ran Grid Search to fine tune the neural network; during which hyperparameters were modified including the number of units in each hidden layer of the network as well as the activation function in the hidden and output layers.
 
 ```py
 def buildHPmodel(hp):
@@ -240,15 +242,15 @@ return model
 
 ```
 
-2.2. K-Fold Cross Validation
+  2.2. K-Fold Cross Validation
 
-K-fold Cross Validation was also run to determine if overfitting was occuring:
+  K-fold Cross Validation was also run to determine if overfitting was occuring:
 
-```
-kfold = RepeatedKFold(n_splits=10, n_repeats=1, random_state=1)
-```
+  ```
+  kfold = RepeatedKFold(n_splits=10, n_repeats=1, random_state=1)
+  ```
 
-After 10 splits of the validation data, the trained models did not produce better results, but cross validation did level the training and testing MSE average. The underlying reason for the poor performance was again the sigmoid activation function used throughout the K-Fold Cross Validation as well as the base Neural Network Model.
+  After 10 splits of the validation data, the trained models did not produce better results, but cross validation did level the training and testing MSE average. The underlying reason for the poor performance was again the sigmoid activation function used throughout the K-Fold Cross Validation as well as the base Neural Network Model.
 
 3. Random Forest
 
@@ -316,7 +318,6 @@ Note that for each of these models, only the best set of train and test MSEs are
   MSE_train: 484.8927144143591
   MSE_test: 409.126023109986
   ```
-  
    
   1.2 Polynomial Regression
   
@@ -416,7 +417,7 @@ Average MSE for testing: 786.2450
 
 ### Discussion
 
-For our task, we decided to start off with simple regression models (linear, polynomial) to get a “baseline” model to compare future models and optimizations. Through the immensely high MSE from our regression models, we were able to find out that simple regression was not enough to accurately predict our task using our layoff data. Therefore, we decided that it would be good to explore more effective models in hopes of improving our MSE.
+For our task, we decided to start off with simple regression models (linear, polynomial) to get a “baseline” model to compare future models and optimizations. Through the immensely high MSE from our regression models, we were able to find out that simple regression was not enough to accurately predict our task using our layoff data. After trying the multi-degree polynomial regressions, we tried an Automatic Relevance Determination (ARD) Regressor, which uses prior probabilities to make educated guesses on which features are most relevant to the data, and then shrinks the coefficients of lesser important features to improve the model's accuracy while maintaining its simplicity as a regression model. To see if we could further reduce the MSE, we decided to explore more complex and effective models.
 
 We then moved on to a neural net as our next model. Assuming that our data had complex, non-linear relationships from the poor performance of our regression models, we decided that a neural net may perform better for this type of problem. We did not perform any hyperparameter tuning in the beginning and got results in MSE and accuracy similarly high to that of the regression models. In hopes that this was not the case, we ran k-fold cross-validation to check if our neural network was truly not optimal. After finding high MSE values at each iteration, we confirmed that our base neural net model was not optimal at all.
 
