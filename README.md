@@ -134,7 +134,7 @@ While we recognize that there are many different factors that go into predicting
 
 1. Dataset Overview
 
-Our dataset comprises records from multiple companies, encompassing various economic area. Each record contains information related to company performance, employee count, and economic indicators at the time, along with the percentage of layoffs that occurred.
+- Our dataset comprises records from multiple companies, encompassing various economic area. Each record contains information related to company performance, employee count, and economic indicators at the time, along with the percentage of layoffs that occurred.
 
 2. Preliminary Analysis
 
