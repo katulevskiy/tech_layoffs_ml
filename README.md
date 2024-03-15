@@ -381,31 +381,28 @@ Note that for each of these models, only the best set of train and test MSEs are
    2.3 Grid Search Optimized Neural Network
    The best model was chosen based on the set of hyperparameters that performed best on the validation set. The following results were obtained:
 
-   ```
+   
    Model: "sequential"
-  _________________________________________________________________ | ________________________ |
-   Layer (type)                Output Shape              Param #    | Trial 13 summary
-  ================================================================= | ======================== |
-   dense (Dense)               (None, 12)                624        | Hyperparameters:         |
-   dense_1 (Dense)             (None, 3)                 39         | units1: 3                |
-   dense_2 (Dense)             (None, 3)                 12         | acttype: relu            |
-   dense_3 (Dense)             (None, 3)                 12         | lr: 0.0936101501762388   |
-   dense_4 (Dense)             (None, 1)                 4          | Score: 220.14390563964844|
-   ```
-   ```
-   | Hyperparameter Trial: |    13     |    47     |    44     |
-   | --------------------: | :-------: | :-------: | :-------: |
-   |        Validation MSE | 220.14389 | 226.53049 | 228.08594 |
-   |           Testing MSE | 335.09143 | 339.18840 | 338.87938 |
-   |          Training MSE | 402.80879 | 404.70366 | 397.43480 |
-  ```
-   After optimizing the model with Grid Search, the best trial activation type = 'relu', the number of nodes in each hidden layer (aside from the first) = 3, and the lr = 0.1916829. 
 
+  | Layer (type)           | Output Shape           | Param #            | Trial 13 summary         |
+  |------------------------|------------------------|--------------------|--------------------------|
+  | dense (Dense)          | (None, 12)             | 624                | Hyperparameters:         |
+  | dense_1 (Dense)        | (None, 3)              | 39                 | units1: 3                |
+  | dense_2 (Dense)        | (None, 3)              | 12                 | acttype: relu            |
+  | dense_3 (Dense)        | (None, 3)              | 12                 | lr: 0.0936101501762388   |
+  | dense_4 (Dense)        | (None, 1)              | 4                  | Score: 220.1439056396484 |
+  
+  | Hyperparameter Trial:  |    13      |    47     |    44     |
+  |-----------------------:|:----------:|:---------:|:---------:|
+  | Validation MSE         | 220.14389  | 226.53049 | 228.08594 |
+  | Testing MSE            | 335.09143  | 339.18840 | 338.87938 |
+  | Training MSE           | 402.80879  | 404.70366 | 397.43480 |
 
+After optimizing the model with Grid Search, the best trial activation type = 'relu', the number of nodes in each hidden layer (aside from the first) = 3, and the lr = 0.1916829. 
 
 4. Random Forest Regression
 
-   Before running grid search, our Random Forest model still generally performed well on the predictive task, with a train MSE of 129.87 and a test MSE of 267.52. With the search, we were able to slightly improve our train and test MSEs to 108.01 and 258.05, respectively. The differences before and after are highlighted below (the last three entries are hyperparameters that got modified):
+Before running grid search, our Random Forest model still generally performed well on the predictive task, with a train MSE of 129.87 and a test MSE of 267.52. With the search, we were able to slightly improve our train and test MSEs to 108.01 and 258.05, respectively. The differences before and after are highlighted below (the last three entries are hyperparameters that got modified):
 
    |       Value:        | Before | After  |
    | :-----------------: | :----: | :----: |
@@ -415,7 +412,8 @@ Note that for each of these models, only the best set of train and test MSEs are
    |     `max_depth`     |   10   |   20   |
    | `min_samples_split` |   10   |   2    |
 
-   As visible above, the hyperparameters were slightly modified during grid search, giving us a more optimal model that performed better on the test set. Since the set of optimal hyperparameters is decided based on the test set, it may be worth experimenting more with methods such as KFold Cross Validation in the future to further eliminate bias.
+
+As visible above, the hyperparameters were slightly modified during grid search, giving us a more optimal model that performed better on the test set. Since the set of optimal hyperparameters is decided based on the test set, it may be worth experimenting more with methods such as KFold Cross Validation in the future to further eliminate bias.
 
    As a supplement, we held `max_depth=20` and `min_samples_split=2` constant, and plotted the results of varying `n_estimators` against the MSE. The graph clearly demonstrates that `n_estimators=94` is an optimal value, given the other set of hyperparameters.
 
