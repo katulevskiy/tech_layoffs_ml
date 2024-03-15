@@ -124,6 +124,23 @@ While we recognize that there are many different factors that go into predicting
 
 #### Data Exploration
 
+1. Dataset Overview
+
+Our dataset comprises records from multiple companies, encompassing various economic area. Each record contains information related to company performance, employee count, and economic indicators at the time, along with the percentage of layoffs that occurred. 
+
+2. Preliminary Analysis
+- Variable Identification: We began by identifying each variable in our dataset, classifying them into numerical and categorical types. This action helped in determining the appropriate preprocessing steps for each variable type. 
+- Missing Values and Outliers: An inital cleaning was conducted to identify missing values and outliers. This involved generating summary statistics for numerical variables and frequency counts for categorial variables. 
+- Data Visualization: Several visualization were implemented understand the data better:
+   - Histogram and density plots were used to examine the distribution of numerical varaibles.
+   - Box plots helped identify outliers and the spread of data.
+   - A correlation matrix was visualized through a heatmap to identify relationships between numerical variables
+
+3. Feature Selection
+- We introduced new features that we hypothesized could be significant predictors of layoffs, such as industry performance indicators and company financial health metrics.
+- Feature selection were applied to identify the most relevant variables for predicting layoffs, helping to reduce model complexity and improve interpretability. 
+
+
 #### Preprocessing
 
 1. Preliminary data proccesing: Drop irrelevant features, rescale data.
