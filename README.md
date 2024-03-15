@@ -398,7 +398,7 @@ Our wariness of the limitations of our current model and our desire to improve o
 ### Collaboration
 
 1. Name: Ryan Ding
-   <p> Contribution:
+   <p> Contribution: Worked on the discussion, Model #1, organizing jypnb file into narrative
 2. Name: Harsh Gurnani
    <p> Contribution:
 3. Name: Michael Boyko
