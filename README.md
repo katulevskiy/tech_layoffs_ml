@@ -467,7 +467,7 @@ Overall, we were able to greatly improve our predictions once we used random for
 7. Name: Peter Lee
    <p> Contribution: Preprocessing, created Model 1 with linear and polynomial regression, documented and narrated results for README across all models.
 8. Name: Bella Jeong
-   <p> Contribution:
+   <p> Contribution: worked on method, data exploration, coding, write-up, data analysis(most company that got laidoffs, area, etc) and general touch-ups. 
 9. Name: Daniil Katulevskiy
    <p> Contribution:
 10. Name: Cedric-James David
