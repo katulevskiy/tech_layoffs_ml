@@ -302,7 +302,7 @@ Note that for each of these models, only the best set of train and test MSEs are
 
 2. Neural Network
 
-2.1 GridSearch Optimized Neural Network
+   2.1 Grid Search Optimized Neural Network
    The best model was chosen based on the set of hyperparameters that performed best on the validation set. The following results were obtained:
 
    ```
@@ -325,7 +325,7 @@ Note that for each of these models, only the best set of train and test MSEs are
 
    After optimizing the model with Grid Search, Model 2 performs a lot better, with the best trial activation type = 'relu', the number of nodes in each layer (aside from the first) = 3, and the lr = 0.192. While it performs worse on the training data set than validation, this phenomenon occurs because during Grid Search, the set of 'best' hyperparameters is decided based on its best performance with regards to the validation MSE. The result of this could potentially be from random choice, where by chance it may have performed the best on that specific validation dataset.
 
-2.2 K-Fold Cross Validation
+   2.2 K-Fold Cross Validation
 
   10 splits of the validation set were trained on leveling off the Average MSE to similar testing and training MSE values.
   ```
@@ -358,7 +358,7 @@ Note that for each of these models, only the best set of train and test MSEs are
    Before running grid search, our Random Forest model still generally performed well on the predictive task, with a train MSE of 129.87 and a test MSE of 267.52. With the search, we were able to slightly improve our train and test MSEs to 108.01 and 258.05, respectively. The differences before and after are highlighted below (the last three entries are hyperparameters that got modified):
 
    |              Value: | Before | After  |
-   | ------------------: | :----: | :----: |
+   | :-----------------: | :----: | :----: |
    |         Testing MSE | 267.52 | 258.05 |
    |        Training MSE | 129.87 | 108.01 |
    |      `n_estimators` |  100   |   94   |
