@@ -393,13 +393,13 @@ Note that for each of these models, only the best set of train and test MSEs are
    dense_4 (Dense)             (None, 1)                 4         | Score: 229.6578369140625 |
    ```
 
-   | Hyperparameter Trial: |    18     |    47     |    46     |
+   | Hyperparameter Trial: |    13     |    47     |    44     |
    | --------------------: | :-------: | :-------: | :-------: |
-   |        Validation MSE | 222.83517 | 232.19811 | 400.67580 |
-   |           Testing MSE | 344.07788 |           |           |
-   |          Training MSE | 407.67958 |           |           |
+   |        Validation MSE | 220.14389 | 226.53049 | 228.08594 |
+   |           Testing MSE | 335.09143 | 339.18840 | 338.87938 |
+   |          Training MSE | 402.80879 | 404.70366 | 397.43480 |
 
-   After optimizing the model with Grid Search, the best trial activation type = 'relu', the number of nodes in each layer (aside from the first) = 3, and the lr = 0.192. 
+   After optimizing the model with Grid Search, the best trial activation type = 'relu', the number of nodes in each hidden layer (aside from the first) = 3, and the lr = 0.1916829. 
 
 
 
