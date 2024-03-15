@@ -440,6 +440,14 @@ Our wariness of the limitations of our current model and our desire to improve o
 The Random Forest combines a set of decision trees, each of which uses a different random subset of the features to make decisions on. The model weights trees with better feature selection higher, which may contribute to better results (as unrelated attributes are filtered out). Furthermore, these make the Random Forest typically less prone to overfitting, which was an issue for our past models. However, given that our train MSE was significantly lower than that of the test, it is possible that our model overfit. Possible future directions to fix this issue can be to reduce model complexity by lowering tree depth, as well as training with cross-validation.
 
 ### Conclusion
+Rather than just using the NASDAQ index fund as one singular metric for economic performance, in the future we can incorporate more real-world data that is indicative of the current economic status besides just the stock market data. We were using NASDAQ-100 Technology Sector stocks, an index fund for the top 100 tech companies, and while it is more focused on the tech sector, we could get company-specific stocks if it is a publicly-traded company. 
+
+Additionally, we could expand it to include predictions for companies in other countries, besides just the US and further train it to take into account other countries. If we were to go this route, however, we would also have to get stock data from other countries as well. 
+
+One more thing we can do to make our predictive model more meaningful is to expand the scope of the timeline we are considering. Currently, our model only utilizes layoff data post the COVID-19 pandemic. However, by incorporating data from before the pandemic, we can enhance our model to address questions such as "Is the current layoff trend temporary?" or "Have we reached the peak of the layoff trend in the tech industry?"
+
+Overall, we were able to greatly improve our predictions once we used random forest, so future steps would be to train our model with more data to better model the real world, instead of running it on very isolated features that ignore other influential factors. Moreover, another model that we can also try implementing (since our simple regression models are not enough to capture the complexity of our data) is ARD, a model that will help us extract valuable insights from complex datasets and better model the real-word.
+
 
 ### Collaboration
 
@@ -452,7 +460,8 @@ The Random Forest combines a set of decision trees, each of which uses a differe
 4. Name: Kenneth Nguyen
    <p> Contribution: Worked mostly on the coding side, especially on data exploration, preprocessing, and the Model 2.1 Grid Search.
 5. Name: Charisse Chua
-   <p> Contribution:
+   <p> Contribution: Worked on data pre-processing and encoded features such as region, company stage, etc. to be numerical, removed unnecessary features and isolated certain types of companies we wanted to focus on (based in the US, certain company stage/size etc), helped guide Model 2.1 Grid Search, writing reflections and analysis for the README
+
 6. Name: Kevin Do
    <p> Contribution: Worked on data exploration, data pre-processing (eliminated irrelevant features, encoded features to be numerical, created one hot encoding, conducted splitting for training and testing), and collaborated on Model 2.1 Grid Search.
 7. Name: Peter Lee
