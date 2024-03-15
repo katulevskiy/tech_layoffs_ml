@@ -193,6 +193,16 @@ Our dataset comprises records from multiple companies, encompassing various econ
 
 2. Neural Network
 
+    Our second model was a Neural Network with four hidden layers each with 12 nodes and a sigmoid activation. Our final output layer was a single node with sigmoid as the activation function. However, even though sigmoid outputs a number from 0 to 1, the output does not signify the percentage of layoffs in a company, instead it suggests a binary classification of layoff or not layoff. Our task is to give a user the likely percentage of people to be laid off at a company, but sigmoid does not accomplish this task which leads to its poor performance. The input dimension was set to 51 dimensions because our dataframe has 51 features for each observation.
+  ```py
+        Dense(12, activation='sigmoid', input_dim=51),
+        Dense(12, activation='sigmoid'),
+        Dense(12, activation='sigmoid'),
+        Dense(12, activation='sigmoid'),
+        Dense(1, activation='sigmoid'),
+```
+
+  
    2.1. Grid-Search Optimized Neural Network
 
    The next model ran was a Grid Search-optimized neural network, during which the hyperparameter was to modify the number of units in each hidden layer of the network and the activation function in the hidden and output layers.
