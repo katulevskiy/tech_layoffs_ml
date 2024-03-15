@@ -299,25 +299,32 @@ After 10 splits of the validation data, the trained models did not produce bette
 
 We found that each model had its own unique strengths and weaknesses, but some models performed better than others on our specified task. The train and test MSE of each model is summarized in the table below:
 
-|           | Polynomial Regression | Neural Network | Random Forest |
-| --------- | --------------------- | -------------- | ------------- |
-| Train MSE | 484.89                | 407.68         | 108.01        |
-| Test MSE  | 409.13                | 344.08         | 258.05        |
+|           | Regression-based (best MSEs) | Neural Network | Random Forest |
+| --------- | ---------------------------- | -------------- | ------------- |
+| Train MSE | 386.46                       | 407.68         | 108.01        |
+| Test MSE  | 290.17                       | 344.08         | 258.05        |
 
 Note that for each of these models, only the best set of train and test MSEs are reported. In reality, different iterations and hyperparameters gave different errors; these nuances are outlined in the sections below.
 
-1. Polynomial Regression
+1. Regression-based modeling
 
-   From our first model, we found the following MSEs for polynomials of degrees 1 to 4:
+   From our first model, we found the following MSEs for polynomials of degrees 1 (which is just a linear regression) to 4:
 
-   |      Degree: |   1    |   2    |   3    |   4    |
-   | -----------: | :----: | :----: | :----: | :----: |
+   |      Degree |   1    |   2    |   3    |   4    |
+   | :-----------: | :----: | :----: | :----: | :----: |
    | Training MSE | 484.89 | 518.52 | 531.32 | 455.39 |
    |  Testing MSE | 409.13 | 667.18 | 624.80 | 880.05 |
 
    Plotted on a graph, the training and testing MSEs look as follows:
 
    ![Training and Testing MSE vs Degree](images/polyreg-mse.png)
+
+   Additionally, we found the following MSEs for the ARD Regression:
+
+   |              | ARD Regression |
+   | :----------: | :------------: |
+   | Training MSE | 386.46         | 
+   |  Testing MSE | 290.17         |
 
 2. Neural Network
 
