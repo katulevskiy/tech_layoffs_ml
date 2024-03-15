@@ -1,4 +1,4 @@
-# PROJECT DOCUMENTATION
+![image](https://github.com/katulevskiy/tech_layoffs_ml/assets/63518165/bbf8220d-0c07-4686-bfd6-177f4512114e)# PROJECT DOCUMENTATION
 
 Based on https://www.kaggle.com/datasets/ulrikeherold/tech-layoffs-2020-2024/data
 
@@ -343,6 +343,11 @@ Note that for each of these models, only the best set of train and test MSEs are
 
     2.1 Base Neural Network
 
+    Our base model was made up of 4 hidden layers of 12 nodes, each with a sigmoid activation function for the layers. Our input was 51 nodes to match up with the 51 features we were inputting for each observation. The results after running 100 epochs with a batch size of 5:
+
+    Training Mean Squared Error: 786.0688184722783
+    Testing Mean Squared Error: 584.9784812168143    
+
     2.2 K-Fold Cross Validation
 
       10 splits of the validation set were trained on leveling off the Average MSE to similar testing and training MSE values.
@@ -371,6 +376,7 @@ Note that for each of these models, only the best set of train and test MSEs are
       Average MSE for training: 786.0711
       Average MSE for testing: 786.2450
       ```
+      ![kfold mse](images/kfold-mse.png)
 
    2.3 Grid Search Optimized Neural Network
    The best model was chosen based on the set of hyperparameters that performed best on the validation set. The following results were obtained:
