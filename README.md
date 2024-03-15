@@ -2,7 +2,7 @@
 
 Based on https://www.kaggle.com/datasets/ulrikeherold/tech-layoffs-2020-2024/data
 
-## Model setup
+## Submission 1: Model setup
 
 To ensure that you are able to reproduce the results of our models in our task to predict company layoffs, be sure to install all necessary packages from our `requirements.txt` file using the command:
 
@@ -53,7 +53,7 @@ pip install -r requirements.txt
 - By performing correlation analysis on layoff percentage, and money raised + size of company before and after layoff, we helped answer the following questions: Would a company have more layoffs if its company size was relatively big before the layoff? Does the size of the company after a layoff be indicative of how big the layoff was? If a company has more money raised, then would the size of their layoff be smaller?
 - Additionally, by exploring industry and stages of the companies that had layoffsm we also answered the following questions: Are certain industries more prone to experiencing layoffs compared to others? Does the current stage of a company serve as a significant indicator of the likelihood of layoffs?
 
-## Model 1 - Polynomial Regression
+## Submission 2: Model 1 - Polynomial Regression
 
 [Finalized Data Preprocessing + Model 1 Analysis Notebook](./FinalizedDataPreprocessingCharisseKevinKenneth.ipynb)
 
@@ -73,7 +73,7 @@ pip install -r requirements.txt
 - One model we could find would be from using Grid Search to find a better tuned Deep Neural Network.
 - Another model we could try is Automatic Relevance Determination (ARD) since we aren't sure if all of our features are relevant in predicting the layoff percentage.
 
-## Model 2 - Neural Network
+## Submission 3: Model 2 - Neural Network
 
 [Model 2 – Neural Net](https://github.com/katulevskiy/tech_layoffs_ml/blob/main/FinalizedDataPreprocessingCharisseKevinKenneth.ipynb)
 All of our data, labels, and loss function remained the same; however, because our original loss function did not perform well, we decided to add the below changes to better tune it and improve our model predictions.
@@ -109,7 +109,7 @@ The next model we are thinking of implementing is a Random Forest Regressor. A R
 
 Although our initial base model for our second model performed much worse than the first (786.068 training MSE compared to 455.386 training MSE in the first model), after performing hyperparameter tuning, our second model improved a lot more. Our final MSE for model 2 was 407.679 training and 344.077 testing. This performed a lot better because we did grid search which computes the optimum hyperparameters to use to predict our data. It performed a lot better than our first model because our first model was just polynomial regression, and neural networks can adapt much better to complex datasets. In order to improve it, we could have done k-fold cross validation instead of using the same validation set every time, because otherwise it gets too specific on one single validation set that doesn’t necessarily train it on all of the different sets it could be on. Also, because not every feature is really impactful for our predictions, we could have isolated only the more influential features and made our predictions from there. This is why we are thinking of doing a random forest model as our model 3 because it will allow us to be more focused in what we use to train.
 
-## Final Project Submission
+## Submission 4: Final Project Submission
 
 ### Introduction
 
