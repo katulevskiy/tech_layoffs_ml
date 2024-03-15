@@ -383,22 +383,22 @@ Note that for each of these models, only the best set of train and test MSEs are
 
    ```
    Model: "sequential"
-   _________________________________________________________________| ________________________ |
-   Layer (type)                Output Shape              Param #   | Trial 18 summary         |
-   =================================================================| ======================== |
-   dense (Dense)               (None, 12)                624       | Hyperparameters:         |
-   dense_1 (Dense)             (None, 3)                 39        | units1: 3                |
-   dense_2 (Dense)             (None, 3)                 12        | acttype: relu            |
-   dense_3 (Dense)             (None, 3)                 12        | lr: 0.19168293127388178  |
-   dense_4 (Dense)             (None, 1)                 4         | Score: 229.6578369140625 |
+  _________________________________________________________________ | ________________________ |
+   Layer (type)                Output Shape              Param #    | Trial 13 summary
+  ================================================================= | ======================== |
+   dense (Dense)               (None, 12)                624        | Hyperparameters:         |
+   dense_1 (Dense)             (None, 3)                 39         | units1: 3                |
+   dense_2 (Dense)             (None, 3)                 12         | acttype: relu            |
+   dense_3 (Dense)             (None, 3)                 12         | lr: 0.0936101501762388   |
+   dense_4 (Dense)             (None, 1)                 4          | Score: 220.14390563964844|
    ```
-
+   ```
    | Hyperparameter Trial: |    13     |    47     |    44     |
    | --------------------: | :-------: | :-------: | :-------: |
    |        Validation MSE | 220.14389 | 226.53049 | 228.08594 |
    |           Testing MSE | 335.09143 | 339.18840 | 338.87938 |
    |          Training MSE | 402.80879 | 404.70366 | 397.43480 |
-
+  ```
    After optimizing the model with Grid Search, the best trial activation type = 'relu', the number of nodes in each hidden layer (aside from the first) = 3, and the lr = 0.1916829. 
 
 
