@@ -331,6 +331,17 @@ Note that for each of these models, only the best set of train and test MSEs are
 
 ### Discussion
 
+For our task, we decided to start off with simple regression models (linear, polynomial) to get a “baseline” model to compare future models and optimizations. Through the immensely high MSE from our regression models, we were able to find out that simple regression was not enough to accurately predict our task using our layoff data. Therefore, we decided that it would be good to explore more effective models in hopes of improving our MSE.
+
+We then moved on to a neural net as our next model. Assuming that our data had complex, non-linear relationships from the poor performance of our regression models, we decided that a neural net may perform better for this type of problem. We did not perform any hyperparameter tuning in the beginning and got results in MSE and accuracy similarly high to that of the regression models. In hopes that this was not the case, we ran k-fold cross-validation to check if our neural network was truly not optimal. After finding high MSE values at each iteration, we confirmed that our base neural net model was not optimal at all.
+
+From our findings from k-fold cross-validation, we decided to implement Grid search in hopes of optimizing our model. We experimented with learning rates, activation functions, and number of nodes per layer in order to optimize our MSE, our main metric of loss. As a result, we were able to find an optimal number of units per layer, being 3 nodes, an optimal activation function in ReLU, and an optimal learning rate in {insert learning rate here} that improved our baseline model. Our MSE was able to go from roughly 800 and 600 for the training and testing MSE respectively to 400 and 350! From this, we were able to tell that our data had a more complex relationship that could not be described through basic regression models. 
+
+However, there were shortcomings of using this model. MSE is an error measure that places equal emphasis on each observation in our model. As a result of this, our model was sensitive to noise within our observations, which may have prevented the model from performing better on our dataset. Additionally, while neural networks are a good model to use for most machine learning tasks, we realize that different models may be better suited towards time series data.
+ 
+Our wariness of the limitations of our current model and our desire to improve our model even further led us to investigate another model architecture for Model 3. We believed that our MSE of 200-300 was still not ideal (as this meant our actual predictions were within +- 14-17%, a margin that gives rise to significant levels of error) and that it could be decreased even further for our task. In this regard, we decided to utilize a RandomForestRegressor model as this model is also effective at handling non-linear and complex data correlations. Further, the Random Forest Regressor is also less prone to overfitting, which has been an issue for our past models. The model proved highly effective, as we achieved a train MSE of 130 and a test MSE of 267. We decided that it could be optimized even further, and after running Grid search, we found a train MSE of 108 and a test MSE of 258– significantly lower than our original MSEs from our regression baselines at 400-500.
+
+
 ### Conclusion
 
 ### Collaboration
