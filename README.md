@@ -299,7 +299,7 @@ After 10 splits of the validation data, the trained models did not produce bette
 
 We found that each model had its own unique strengths and weaknesses, but some models performed better than others on our specified task. The train and test MSE of each model is summarized in the table below:
 
-|           | Regression-based (best MSEs) | Neural Network | Random Forest |
+|           | Regression-based             | Neural Network | Random Forest |
 | --------- | ---------------------------- | -------------- | ------------- |
 | Train MSE | 386.46                       | 407.68         | 108.01        |
 | Test MSE  | 290.17                       | 344.08         | 258.05        |
