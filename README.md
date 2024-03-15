@@ -344,10 +344,10 @@ Note that for each of these models, only the best set of train and test MSEs are
     2.1 Base Neural Network
 
     Our base model was made up of 4 hidden layers of 12 nodes, each with a sigmoid activation function for the layers. Our input was 51 nodes to match up with the 51 features we were inputting for each observation. The results after running 100 epochs with a batch size of 5:
-
+    ```
     Training Mean Squared Error: 786.0688184722783
     Testing Mean Squared Error: 584.9784812168143    
-
+    ```
     2.2 K-Fold Cross Validation
 
       10 splits of the validation set were trained on leveling off the Average MSE to similar testing and training MSE values.
