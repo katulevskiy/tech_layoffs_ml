@@ -223,6 +223,13 @@ Our dataset comprises records from multiple companies, encompassing various econ
    ```
 
    2.2. K-Fold Cross Validation
+   
+   We ran a K-fold Cross Validation:
+  ```
+  kfold = RepeatedKFold(n_splits=10, n_repeats=1, random_state=1)
+  ```
+  10 splits of the validation data which did not produce better results, but cross validation did level the training and testing MSE. The underlying reason for the poor performance was again the sigmoid activation function used throughout the K-Fold Cross Validation as well as the base Neural Network Model.
+
 
 3. Random Forest
 
