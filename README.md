@@ -471,4 +471,4 @@ Overall, we were able to greatly improve our predictions once we used random for
 9. Name: Daniil Katulevskiy
    <p> Contribution:
 10. Name: Cedric-James David
-    <p> Contribution:
+    <p> Contribution: Worked on initial data exploration. Coded Model 1 Regression, documented results for model.
