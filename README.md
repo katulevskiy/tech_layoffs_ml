@@ -456,7 +456,7 @@ Overall, we were able to greatly improve our predictions once we used random for
 2. Name: Harsh Gurnani
    <p> Contribution: Worked on coding and write-up. Created Model 3 Random Forest Regression with grid search. Wrote information about data exploration, Model 3, and general touch-ups.
 3. Name: Michael Boyko
-   <p> Contribution:
+   <p> Contribution: Worked on data preprocessing, specifically combining the stock data with the rest of the data frame. Created Model 2 Neural Network as well as K-Fold Cross Validation. Cleaned up Model 1 and 2 explanation as well as Grid Search. Wrote Model 2 and K-Fold Cross Validation Results and Methods. 
 4. Name: Kenneth Nguyen
    <p> Contribution: Worked mostly on the coding side, especially on data exploration, preprocessing, and the Model 2.1 Grid Search.
 5. Name: Charisse Chua
