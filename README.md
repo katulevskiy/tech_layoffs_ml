@@ -5,7 +5,9 @@ Based on https://www.kaggle.com/datasets/ulrikeherold/tech-layoffs-2020-2024/dat
 ## Model setup
 To ensure that you are able to reproduce the results of our models in our task to predict company layoffs, be sure to install all necessary packages from our `requirements.txt` file using the command:
 
-`pip install -r requirements.txt`
+```py
+pip install -r requirements.txt
+```
 
 ## Data pre-processing
 
