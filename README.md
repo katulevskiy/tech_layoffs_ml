@@ -170,35 +170,44 @@ Our dataset comprises records from multiple companies, encompassing various econ
 
 #### Models
 
-1. Polynomial Regression
+1. Regression-based modeling
 
-   The first model we tried was polynomial regression, during which we tried
-   modifying the degree of our polynomial.
+   We first tried a number of regression models, ranging from basic Multilinear Regression, to Polynomial Regression in order to transform the data, and finally Automatic Relevance Determinantion (ARD) Regression to see if any of these were able to perform well on our predictive task.
+
+  We started off with a basic Multilinear regression model as shown below, and used MSE as our loss function to measure its performance:
 
    ```py
-   logreg = LinearRegression()
-
-   X_train_np = np.array(X_train)
-   y_train_np = np.array(y_train)
-   X_train_df = pd.DataFrame(X_train_np)
-   y_train_df = pd.DataFrame(y_train_np)
-
-   logreg.fit(X_train_df, y_train_df)
+   linreg = LinearRegression()
+   X_train_df, y_train_df = pd.DataFrame(np.array(X_train)), pd.DataFrame(np.array(y_train))
+   linreg.fit(X_train_df, y_train_df)
+   yhat_train, yhat_test = linreg.predict(X_train), linreg.predict(X_test)
+   MSE_train, MSE_test = np.mean((y_train.values - yhat_train)**2), np.mean((y_test.values - yhat_test)**2)
    ```
 
+  Then, we moved towards Polynomial Regression of degrees 2, 3, and 4 in order to see if transforming our features would allow us to better predict our target:
+  
    ```py
    for k in range(2,5):
       # Create kth degree polynomial
-      poly = PolynomialFeatures(k)
+      polyreg = PolynomialFeatures(k)
 
       # Convert features to fit polynomial model
-      train_features = poly.fit_transform(X_train_df)
-      test_features = poly.fit_transform(X_test)
+      train_features = polyreg.fit_transform(X_train_df)
+      test_features = polyreg.fit_transform(X_test)
 
       # Create polynomial regression
       polyreg = LinearRegression()
       polyreg.fit(train_features, y_train_df)
    ```
+
+  Finally, we looked at ARD Regression, which uses prior probabilities to make educated guesses on which features are most relevant to the data, and then shrinks the coefficients of lesser important features to improve the model's   
+  accuracy while maintaining its simplicity as a regression model:
+
+  ```py
+  ard = ARDRegression().fit(X_train, y_train_df)
+  yhat_train, yhat_test = ard.predict(X_train), ard.predict(X_test)
+  MSE_train, MSE_test = np.mean((y_train.values - yhat_train)**2), np.mean((y_test.values - yhat_test)**2)
+  ```
 
 2. Neural Network
 
