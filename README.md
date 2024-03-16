@@ -467,6 +467,6 @@ Overall, we were able to greatly improve our predictions once we used random for
 8. Name: Bella Jeong
    <p> Contribution: worked on method, data exploration, coding, write-up, data analysis(most company that got laidoffs, area, etc) and general touch-ups. 
 9. Name: Daniil Katulevskiy
-   <p> Contribution:
+   <p> Contribution: Sourced initial data, retrieved more data from different sources like share prices from yahoo finance, compiled them into one table for further processing. Helped with model comparisons and performance analysis, along with improvement suggestions for the models.
 10. Name: Cedric-James David
     <p> Contribution: Worked on initial data exploration. Coded Model 1 Regression, documented results for model.
