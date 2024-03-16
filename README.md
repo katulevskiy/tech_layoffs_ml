@@ -225,7 +225,7 @@ While we recognize that there are many different factors that go into predicting
 
   2.1. Grid-Search Optimized Neural Network
 
-  To tune the poor performing Neural Network, we ran Grid Search to fine tune the neural network; during which hyperparameters were modified including the number of units in each hidden layer of the network as well as the activation function in the hidden and output layers.
+  To tune the poor performing Neural Network, we ran Grid Search to fine tune the neural network; during which hyperparameters were modified including the number of units in each hidden layer of the network as well as the activation function in the hidden and output layers. At each step, it had a choice of activation types of sigmoid, relu, softmax and values of nodes between 3 and 24. The output layer will be one unit, with a choice between sigmoid, relu, and softmax.
 
 ```py
 def buildHPmodel(hp):
